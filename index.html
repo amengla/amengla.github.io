@@ -153,19 +153,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-韩顺平Linux学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Linux基础知识与指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/08/%E9%9F%A9%E9%A1%BA%E5%B9%B3Linux%E5%AD%A6%E4%B9%A0/">韩顺平Linux学习</a>
+      <a class="article-title" href="/2021/12/08/Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%B8%8E%E6%8C%87%E4%BB%A4/">韩顺平Linux学习</a>
     </h1>
   
 
         
-        <a href="/2021/12/08/%E9%9F%A9%E9%A1%BA%E5%B9%B3Linux%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
+        <a href="/2021/12/08/Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%B8%8E%E6%8C%87%E4%BB%A4/" class="archive-article-date">
   	<time datetime="2021-12-08T06:58:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-08</time>
 </a>
         
@@ -173,7 +173,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="一、Linux介绍"><a href="#一、Linux介绍" class="headerlink" title="一、Linux介绍"></a>一、Linux介绍</h1><h2 id="1-1概述"><a href="#1-1概述" class="headerlink" title="1.1概述"></a>1.1概述</h2><p>Linux,全称GNU/Linux,是一个开源、免费的操作系统，其稳定性、安全性、处理多并发的优点已经得到业界认可，很多企业级的项目（c/c++/php/python/java/go)都会部署到Linux/unix系统上。</p>
+<h2 id="1-2Linux主要发行版"><a href="#1-2Linux主要发行版" class="headerlink" title="1.2Linux主要发行版"></a>1.2Linux主要发行版</h2><p>Ubuntu(乌班图)、RedHat(红帽)、CentOS、Debain（蝶变）、Fedora、SuSE、OpenSUSE</p>
+<h2 id="1-3-Linux目录结构"><a href="#1-3-Linux目录结构" class="headerlink" title="1.3 Linux目录结构"></a>1.3 Linux目录结构</h2><p><strong>在Linux世界里，一切皆文件</strong><br><code>1)   /bin  [常用] （usr/bin、/usr/local/bin）</code><br>   是Binary的缩写，这个目录里存放着经常使用的命令</p>
+<p><code>2)  /sbin (/usr/sbin、usr/local/sbin)</code><br>   s就是Super User 的意思，这里存放的是系统管理员使用的系统管理程序。<br><code>3) /home  [常用]</code><br>   存放普通用户的主目录，在Linux中每个用户都有一个自己的目录，一般该目录是以用户的账号命名<br><code>4)  /root  [常用]</code><br>   该目录为系统管理员，也称作超级权限者的用户主目录<br><code>5)  /lib </code><br>   系统开机所需要最基本的动态链接共享库，其作用类似于Windows里的DLL文件。几乎所有的应用程序都需要用到这些共享库<br><code>6)  /lost+found</code>   这个目录一般情况下是空的，当系统非法关机后，这里就存放了一些文件<br><code>7) /etc  [常用]</code><br>   所有的系统管理所需要的配置文件和子目录，比如安装mysql数据库my.conf<br><code>8) /usr  [常用]</code><br>   这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似与windows下的program files 目录。<br><code>9) /boot  [常用]</code><br>    存放的是启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件<br><code>10) /proc  [不能动]</code><br>    这个目录是一个虚拟的目录，它是系统内存的映射，访问这个目录来获取系统信息<br><code>11) /src  [不能动]</code><br>    service缩写，该目录存放一些服务启动之后需要提取的数据<br><code>12) /sys  [不能动]</code><br>    这是Linux2.6内核的一个很大的变化。该目录下安装的2.6内核中新出现的一个文件系统sysfs<br><code>13) /tmp</code><br>    这个目录是用来存放一些临时文件的<br><code>14) /dev</code><br>    类似于Window的设备管理器，把所有硬件用文件的形式存储<br><code> 15) /media  [常用]</code><br>    linux系统会自动识别一些设备，例如U盘、光驱等等，当识别后，linux会把识别的设备挂载到这个目录下<br><code>16) /mnt  [常用]</code><br>    系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将外部的存储挂载在/mnt/上，然后进入该目录就可以查看里面的内容了<br><code> 17) /opt</code><br>    这是给主机额外安装软件所存放的目录。如安装ORACLE数据库就可放到该目录下。默认为空<br><code>18) /usr/local  [常用]</code><br>    这是另一个给主机额外安装软件所存放的目录。一般是通过编译源码方式安装的程序<br><code>19) /var  [常用]</code><br>    这个目录中存放着在不断扩充着的东西，习惯将经常被修改的目录放在这个目录下。包括各种日志文件<br><code> 20) /selinux [security-enhanced linux]</code><br>    SELinux 是一种安全子系统，它能控制程序只能访问特定文件，有三种工作模式，可以自行设置</p>
+
       
 
       
@@ -185,7 +189,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/08/%E9%9F%A9%E9%A1%BA%E5%B9%B3Linux%E5%AD%A6%E4%B9%A0/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/08/Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%B8%8E%E6%8C%87%E4%BB%A4/">展开全文 >></a>
         </p>
       
 
