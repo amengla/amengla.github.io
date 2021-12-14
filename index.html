@@ -174,20 +174,21 @@
 </a>
         
       </header>
+
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<h2><span id="quick-start">Quick Start</span><a href="#quick-start" class="header-anchor">#</a></h2><h3><span id="create-a-new-post">Create a new post</span><a href="#create-a-new-post" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3><span id="run-server">Run server</span><a href="#run-server" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3><span id="generate-static-files">Generate static files</span><a href="#generate-static-files" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3><span id="deploy-to-remote-sites">Deploy to remote sites</span><a href="#deploy-to-remote-sites" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
@@ -231,6 +232,7 @@
 
 
 
+
   
     <article id="post-Linux基础知识与指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -249,10 +251,181 @@
 </a>
         
       </header>
+
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一、Linux介绍"><a href="#一、Linux介绍" class="headerlink" title="一、Linux介绍"></a>一、Linux介绍</h1><h2 id="1-1概述"><a href="#1-1概述" class="headerlink" title="1.1概述"></a>1.1概述</h2><p>Linux,全称GNU/Linux,是一个开源、免费的操作系统，其稳定性、安全性、处理多并发的优点已经得到业界认可，很多企业级的项目（c/c++/php/python/java/go)都会部署到Linux/unix系统上。</p>
+        <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#yi-linux-jie-shao">一、Linux介绍</a><ul>
+<li><a href="#1-1-gai-shu">1.1概述</a></li>
+<li><a href="#1-2linux-zhu-yao-fa-xing-ban">1.2Linux主要发行版</a></li>
+<li><a href="#1-3-linux-mu-lu-jie-gou">1.3 Linux目录结构</a></li>
+</ul>
+</li>
+<li><a href="#er-kai-ji-chong-qi-yu-yong-hu-deng-lu-zhu-xiao-zhi-ling">二、开机、重启与用户登录注销指令</a><ul>
+<li><a href="#2-1-guan-ji-chong-qi-zhi-ling">2.1 关机&amp;重启指令</a><ul>
+<li><a href="#2-1-1-ji-ben-jie-shao">2.1.1 基本介绍</a></li>
+<li><a href="#2-1-2-shi-yong-xi-jie">2.1.2 使用细节</a></li>
+</ul>
+</li>
+<li><a href="#2-2-yong-hu-deng-lu-he-zhu-xiao">2.2 用户登录和注销</a><ul>
+<li><a href="#2-2-1-ji-ben-jie-shao">2.2.1 基本介绍</a></li>
+<li><a href="#2-2-2-shi-yong-xi-jie">2.2.2 使用细节</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#san-yong-hu-guan-li-zhi-ling">三、用户管理指令</a><ul>
+<li><a href="#3-1-tian-jia-yong-hu">3.1 添加用户</a><ul>
+<li><a href="#3-1-1-ji-ben-yu-fa">3.1.1 基本语法</a></li>
+</ul>
+</li>
+<li><a href="#3-2-zhi-ding-xiu-gai-mi-ma">3.2 指定/修改密码</a><ul>
+<li><a href="#3-2-1-ji-ben-yu-fa">3.2.1 基本语法</a></li>
+</ul>
+</li>
+<li><a href="#3-3-shan-chu-yong-hu">3.3 删除用户</a><ul>
+<li><a href="#3-3-1-ji-ben-yu-fa">3.3.1 基本语法</a></li>
+<li><a href="#3-3-2-shi-yong-xi-jie">3.3.2 使用细节</a></li>
+</ul>
+</li>
+<li><a href="#3-4-cha-xun-yong-hu-xin-xi-zhi-ling">3.4查询用户信息指令</a><ul>
+<li><a href="#3-4-1-ji-ben-yu-fa">3.4.1 基本语法</a></li>
+<li><a href="#3-4-2-shi-yong-xi-jie">3.4.2 使用细节</a></li>
+</ul>
+</li>
+<li><a href="#3-5-qie-huan-yong-hu">3.5 切换用户</a><ul>
+<li><a href="#3-5-1-ji-ben-yu-fa">3.5.1 基本语法</a></li>
+<li><a href="#3-5-2-shi-yong-xi-jie">3.5.2 使用细节</a></li>
+</ul>
+</li>
+<li><a href="#3-6-cha-kan-dang-qian-yong-hu">3.6 查看当前用户</a><ul>
+<li><a href="#3-6-1-ji-ben-yu-fa">3.6.1 基本语法</a></li>
+</ul>
+</li>
+<li><a href="#3-7-yong-hu-zu">3.7 用户组</a><ul>
+<li><a href="#3-7-1-xin-zeng-zu">3.7.1 新增组</a></li>
+<li><a href="#3-7-2-shan-chu-zu">3.7.2 删除组</a></li>
+<li><a href="#3-7-3-xiu-gai-yong-hu-de-zu">3.7.3 修改用户的组</a></li>
+</ul>
+</li>
+<li><a href="#3-8-yong-hu-he-zu-xiang-guan-wen-jian">3.8 用户和组相关文件</a><ul>
+<li><a href="#3-8-1">3.8.1</a></li>
+<li><a href="#3-8-2">3.8.2</a></li>
+<li><a href="#3-8-3">3.8.3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#si-shi-yong-zhi-ling">四、实用指令</a><ul>
+<li><a href="#4-1-zhi-ding-yun-xing-ji-bie">4.1 指定运行级别</a><ul>
+<li><a href="#4-1-1-ji-ben-yu-fa">4.1.1 基本语法</a></li>
+<li><a href="#4-1-2-shuo-ming">4.1.2 说明</a></li>
+<li><a href="#4-1-3-she-zhi-mo-ren-yun-xing-ji-bie">4.1.3 设置默认运行级别</a></li>
+<li><a href="#4-1-4-huo-qu-dang-qian-mo-ren-yun-xing-ji-bie">4.1.4 获取当前默认运行级别</a></li>
+</ul>
+</li>
+<li><a href="#4-2-bang-zhu-zhi-ling">4.2 帮助指令</a><ul>
+<li><a href="#4-2-1-man-huo-de-bang-zhu-xin-xi">4.2.1 <code>man</code>获得帮助信息</a></li>
+<li><a href="#4-2-2-help-zhi-ling">4.2.2 <code>help</code>指令</a></li>
+</ul>
+</li>
+<li><a href="#4-3-wen-jian-mu-lu-lei-zhi-ling">4.3文件目录类指令</a></li>
+<li><a href="#4-3-1-xian-shi-dang-qian-gong-zuo-mu-lu-de-jue-dui-lu-jing">4.3.1 显示当前工作目录的绝对路径</a><ul>
+<li><a href="#4-3-2-cha-kan-dang-qian-mu-lu-nei-rong">4.3.2 查看当前目录内容</a></li>
+<li><a href="#4-3-3-qie-huan-dao-zhi-ding-mu-lu">4.3.3 切换到指定目录</a></li>
+<li><a href="#4-3-4-chuang-jian-mu-lu">4.3.4 创建目录</a></li>
+<li><a href="#4-3-5-shan-chu-kong-mu-lu">4.3.5 删除空目录</a></li>
+<li><a href="#4-3-6-chuang-jian-kong-wen-jian">4.3.6 创建空文件</a></li>
+<li><a href="#4-3-7-kao-bei-zhi-ling">4.3.7 拷贝指令</a></li>
+<li><a href="#4-3-8-zhi-ling-yi-chu-wen-jian-huo-mu-lu">4.3.8 指令移除文件或目录</a></li>
+<li><a href="#4-3-9-yi-dong-wen-jian-yu-mu-lu-chong-ming-ming">4.3.9 移动文件与目录重命名</a></li>
+<li><a href="#4-3-10-cha-kan-wen-jian-nei-rong">4.3.10 查看文件内容</a></li>
+<li><a href="#4-3-11-more-zhi-ling">4.3.11 more指令</a></li>
+<li><a href="#4-3-12-less-zhi-ling">4.3.12 less指令</a></li>
+<li><a href="#4-3-13-echo-zhi-ling">4.3.13 echo指令</a></li>
+<li><a href="#4-3-14-head-zhi-ling">4.3.14 head指令</a></li>
+<li><a href="#4-3-15-tail-zhi-ling">4.3.15 tail指令</a></li>
+<li><a href="#4-3-16-he-shu-chu-chong-ding-xiang-he-zhui-jia-zhi-ling">4.3.16 &gt; 和 &gt;&gt; （输出重定向和追加）指令</a></li>
+<li><a href="#4-3-16-ln-zhi-ling">4.3.16 ln指令</a></li>
+<li><a href="#4-3-17-history-zhi-ling">4.3.17 history指令</a></li>
+</ul>
+</li>
+<li><a href="#4-4-shi-jian-ri-qi-lei-zhi-ling">4.4 时间日期类指令</a><ul>
+<li><a href="#4-4-1-date-zhi-ling-xian-shi-dang-qian-ri-qi">4.4.1 date指令-显示当前日期</a></li>
+<li><a href="#4-4-2-date-zhi-ling-she-zhi-ri-qi">4.4.2 date指令-设置日期</a></li>
+<li><a href="#4-4-3-cal-zhi-ling-cha-kan-ri-li">4.4.3 cal指令（查看日历）</a></li>
+</ul>
+</li>
+<li><a href="#4-5-sou-suo-cha-zhao-lei-zhi-ling">4.5搜索查找类指令</a><ul>
+<li><a href="#4-5-1-find-zhi-ling">4.5.1 find指令</a></li>
+<li><a href="#4-5-2-locate-zhi-ling">4.5.2 locate指令</a></li>
+<li><a href="#4-5-3-grep-zhi-ling-he-guan-dao-fu-hao">4.5.3 grep指令和 | 管道符号</a></li>
+</ul>
+</li>
+<li><a href="#4-6-ya-suo-he-jie-ya-lei">4.6压缩和解压类</a><ul>
+<li><a href="#4-6-1-gzip-he-gunzip-zhi-ling">4.6.1 gzip 和 gunzip 指令</a></li>
+<li><a href="#4-6-2-zip-he-unzip-zhi-ling">4.6.2 zip 和 unzip 指令</a></li>
+<li><a href="#4-6-3-tar-zhi-ling">4.6.3 tar 指令</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#wu-zu-guan-li-he-quan-xian-guan-li">五、 组管理和权限管理</a><ul>
+<li><a href="#5-1-linux-zu-ji-ben-jie-shao">5.1 Linux组基本介绍</a></li>
+<li><a href="#5-2-wen-jian-mu-lu-suo-you-zhe">5.2文件/目录 所有者</a><ul>
+<li><a href="#5-2-1-cha-kan-wen-jian-de-suo-you-zhe">5.2.1 查看文件的所有者</a></li>
+<li><a href="#5-2-2-xiu-gai-wen-jian-de-suo-you-zhe">5.2.2 修改文件的所有者</a></li>
+</ul>
+</li>
+<li><a href="#5-3-zu-de-chuang-jian">5.3 组的创建</a></li>
+<li><a href="#5-4-wen-jian-mu-lu-suo-zai-zu">5.4 文件/目录 所在组</a><ul>
+<li><a href="#5-4-1-cha-kan-wen-jian-de-suo-zai-zu">5.4.1 查看文件的所在组</a></li>
+<li><a href="#5-4-2-xiu-gai-wen-jian-de-suo-zai-zu">5.4.2 修改文件的所在组</a></li>
+<li><a href="#5-5-gai-bian-yong-hu-suo-zai-de-zu">5.5 改变用户所在的组</a></li>
+</ul>
+</li>
+<li><a href="#5-6-quan-xian-de-ji-ben-jie-shao">5.6 权限的基本介绍</a></li>
+<li><a href="#5-7-rwx-quan-xian-xiang-jie">5.7 rwx权限详解</a><ul>
+<li><a href="#5-7-1-rwx-zuo-yong-dao-wen-jian">5.7.1 rwx作用到文件</a></li>
+<li><a href="#5-7-2-rwx-zuo-yong-dao-mu-lu">5.7.2 rwx作用到目录</a></li>
+</ul>
+</li>
+<li><a href="#5-8-xiu-gai-quan-xian-chmod-zhi-ling">5.8 修改权限 - chmod指令</a><ul>
+<li><a href="#5-8-1-di-yi-chong-fang-shi-bian-geng-quan-xian">5.8.1 第一种方式：+、-、=变更权限</a></li>
+<li><a href="#5-8-2-di-er-chong-fang-shi-tong-guo-shu-zi-bian-geng-quan-xian">5.8.2 第二种方式：通过数字变更权限</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#liu-ding-shi-ren-wu-diao-du">六、定时任务调度</a><ul>
+<li><a href="#6-1-crond-ren-wu-diao-du">6.1 crond 任务调度</a><ul>
+<li><a href="#6-1-1-ji-ben-gai-nian">6.1.1 基本概念</a></li>
+<li><a href="#6-1-2-ji-ben-zhi-ling">6.1.2 基本指令</a></li>
+<li><a href="#6-1-3-chang-yong-xuan-xiang">6.1.3 常用选项</a></li>
+<li><a href="#6-1-4-kuai-su-ru-men">6.1.4 快速入门</a></li>
+</ul>
+</li>
+<li><a href="#6-2-at">6.2 at</a><ul>
+<li><a href="#6-2-1-ji-ben-jie-shao">6.2.1 基本介绍</a></li>
+<li><a href="#6-2-2-ming-ling-ge-shi">6.2.2 命令格式</a></li>
+<li><a href="#6-2-3-ming-ling-xuan-xiang">6.2.3 命令选项</a></li>
+<li><a href="#6-2-4-at-shi-jian-ding-yi">6.2.4 at时间定义</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#qi-linux-ci-pan-fen-qu-gua-zai">七、Linux磁盘分区，挂载</a></li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+
+<h1 id="一、Linux介绍"><a href="#一、Linux介绍" class="headerlink" title="一、Linux介绍"></a>一、Linux介绍</h1><h2 id="1-1概述"><a href="#1-1概述" class="headerlink" title="1.1概述"></a>1.1概述</h2><p>Linux,全称GNU/Linux,是一个开源、免费的操作系统，其稳定性、安全性、处理多并发的优点已经得到业界认可，很多企业级的项目（c/c++/php/python/java/go)都会部署到Linux/unix系统上。</p>
 <h2 id="1-2Linux主要发行版"><a href="#1-2Linux主要发行版" class="headerlink" title="1.2Linux主要发行版"></a>1.2Linux主要发行版</h2><p>Ubuntu(乌班图)、RedHat(红帽)、CentOS、Debain（蝶变）、Fedora、SuSE、OpenSUSE</p>
 <h2 id="1-3-Linux目录结构"><a href="#1-3-Linux目录结构" class="headerlink" title="1.3 Linux目录结构"></a>1.3 Linux目录结构</h2><p><strong>在Linux世界里，一切皆文件</strong></p>
         
@@ -311,6 +484,7 @@
         
     </div>
 </aside>
+
 
 
 
@@ -574,5 +748,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":200,"height":400,"hOffset":20,"vOffset":20},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

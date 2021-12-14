@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>Linux基础知识与指令 | amengla的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、Linux介绍1.1概述Linux,全称GNU&#x2F;Linux,是一个开源、免费的操作系统，其稳定性、安全性、处理多并发的优点已经得到业界认可，很多企业级的项目（c&#x2F;c++&#x2F;php&#x2F;python&#x2F;java&#x2F;go)都会部署到Linux&#x2F;unix系统上。 1.2Linux主要发行版Ubuntu(乌班图)、RedHat(红帽)、CentOS、Debain（蝶变）、Fedora、SuSE、OpenSUSE">
+  <meta name="description" content="一、Linux介绍 1.1概述 1.2Linux主要发行版 1.3 Linux目录结构   二、开机、重启与用户登录注销指令 2.1 关机&amp;重启指令 2.1.1 基本介绍 2.1.2 使用细节   2.2 用户登录和注销 2.2.1 基本介绍 2.2.2 使用细节     三、用户管理指令 3.1 添加用户 3.1.1 基本语法   3.2 指定&#x2F;修改密码 3.2.1 基本语法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux基础知识与指令">
 <meta property="og:url" content="http://example.com/2021/12/08/Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%B8%8E%E6%8C%87%E4%BB%A4/index.html">
 <meta property="og:site_name" content="amengla的博客">
-<meta property="og:description" content="一、Linux介绍1.1概述Linux,全称GNU&#x2F;Linux,是一个开源、免费的操作系统，其稳定性、安全性、处理多并发的优点已经得到业界认可，很多企业级的项目（c&#x2F;c++&#x2F;php&#x2F;python&#x2F;java&#x2F;go)都会部署到Linux&#x2F;unix系统上。 1.2Linux主要发行版Ubuntu(乌班图)、RedHat(红帽)、CentOS、Debain（蝶变）、Fedora、SuSE、OpenSUSE">
+<meta property="og:description" content="一、Linux介绍 1.1概述 1.2Linux主要发行版 1.3 Linux目录结构   二、开机、重启与用户登录注销指令 2.1 关机&amp;重启指令 2.1.1 基本介绍 2.1.2 使用细节   2.2 用户登录和注销 2.2.1 基本介绍 2.2.2 使用细节     三、用户管理指令 3.1 添加用户 3.1.1 基本语法   3.2 指定&#x2F;修改密码 3.2.1 基本语法">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-12-08T06:58:40.000Z">
-<meta property="article:modified_time" content="2021-12-13T07:26:48.293Z">
+<meta property="article:modified_time" content="2021-12-14T06:01:06.468Z">
 <meta property="article:author" content="amengla">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Centos">
@@ -178,61 +178,232 @@
 </a>
         
       </header>
+
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一、Linux介绍"><a href="#一、Linux介绍" class="headerlink" title="一、Linux介绍"></a>一、Linux介绍</h1><h2 id="1-1概述"><a href="#1-1概述" class="headerlink" title="1.1概述"></a>1.1概述</h2><p>Linux,全称GNU/Linux,是一个开源、免费的操作系统，其稳定性、安全性、处理多并发的优点已经得到业界认可，很多企业级的项目（c/c++/php/python/java/go)都会部署到Linux/unix系统上。</p>
-<h2 id="1-2Linux主要发行版"><a href="#1-2Linux主要发行版" class="headerlink" title="1.2Linux主要发行版"></a>1.2Linux主要发行版</h2><p>Ubuntu(乌班图)、RedHat(红帽)、CentOS、Debain（蝶变）、Fedora、SuSE、OpenSUSE</p>
-<h2 id="1-3-Linux目录结构"><a href="#1-3-Linux目录结构" class="headerlink" title="1.3 Linux目录结构"></a>1.3 Linux目录结构</h2><p><strong>在Linux世界里，一切皆文件</strong></p>
+        <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#yi-linux-jie-shao">一、Linux介绍</a><ul>
+<li><a href="#1-1-gai-shu">1.1概述</a></li>
+<li><a href="#1-2linux-zhu-yao-fa-xing-ban">1.2Linux主要发行版</a></li>
+<li><a href="#1-3-linux-mu-lu-jie-gou">1.3 Linux目录结构</a></li>
+</ul>
+</li>
+<li><a href="#er-kai-ji-chong-qi-yu-yong-hu-deng-lu-zhu-xiao-zhi-ling">二、开机、重启与用户登录注销指令</a><ul>
+<li><a href="#2-1-guan-ji-chong-qi-zhi-ling">2.1 关机&amp;重启指令</a><ul>
+<li><a href="#2-1-1-ji-ben-jie-shao">2.1.1 基本介绍</a></li>
+<li><a href="#2-1-2-shi-yong-xi-jie">2.1.2 使用细节</a></li>
+</ul>
+</li>
+<li><a href="#2-2-yong-hu-deng-lu-he-zhu-xiao">2.2 用户登录和注销</a><ul>
+<li><a href="#2-2-1-ji-ben-jie-shao">2.2.1 基本介绍</a></li>
+<li><a href="#2-2-2-shi-yong-xi-jie">2.2.2 使用细节</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#san-yong-hu-guan-li-zhi-ling">三、用户管理指令</a><ul>
+<li><a href="#3-1-tian-jia-yong-hu">3.1 添加用户</a><ul>
+<li><a href="#3-1-1-ji-ben-yu-fa">3.1.1 基本语法</a></li>
+</ul>
+</li>
+<li><a href="#3-2-zhi-ding-xiu-gai-mi-ma">3.2 指定/修改密码</a><ul>
+<li><a href="#3-2-1-ji-ben-yu-fa">3.2.1 基本语法</a></li>
+</ul>
+</li>
+<li><a href="#3-3-shan-chu-yong-hu">3.3 删除用户</a><ul>
+<li><a href="#3-3-1-ji-ben-yu-fa">3.3.1 基本语法</a></li>
+<li><a href="#3-3-2-shi-yong-xi-jie">3.3.2 使用细节</a></li>
+</ul>
+</li>
+<li><a href="#3-4-cha-xun-yong-hu-xin-xi-zhi-ling">3.4查询用户信息指令</a><ul>
+<li><a href="#3-4-1-ji-ben-yu-fa">3.4.1 基本语法</a></li>
+<li><a href="#3-4-2-shi-yong-xi-jie">3.4.2 使用细节</a></li>
+</ul>
+</li>
+<li><a href="#3-5-qie-huan-yong-hu">3.5 切换用户</a><ul>
+<li><a href="#3-5-1-ji-ben-yu-fa">3.5.1 基本语法</a></li>
+<li><a href="#3-5-2-shi-yong-xi-jie">3.5.2 使用细节</a></li>
+</ul>
+</li>
+<li><a href="#3-6-cha-kan-dang-qian-yong-hu">3.6 查看当前用户</a><ul>
+<li><a href="#3-6-1-ji-ben-yu-fa">3.6.1 基本语法</a></li>
+</ul>
+</li>
+<li><a href="#3-7-yong-hu-zu">3.7 用户组</a><ul>
+<li><a href="#3-7-1-xin-zeng-zu">3.7.1 新增组</a></li>
+<li><a href="#3-7-2-shan-chu-zu">3.7.2 删除组</a></li>
+<li><a href="#3-7-3-xiu-gai-yong-hu-de-zu">3.7.3 修改用户的组</a></li>
+</ul>
+</li>
+<li><a href="#3-8-yong-hu-he-zu-xiang-guan-wen-jian">3.8 用户和组相关文件</a><ul>
+<li><a href="#3-8-1">3.8.1</a></li>
+<li><a href="#3-8-2">3.8.2</a></li>
+<li><a href="#3-8-3">3.8.3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#si-shi-yong-zhi-ling">四、实用指令</a><ul>
+<li><a href="#4-1-zhi-ding-yun-xing-ji-bie">4.1 指定运行级别</a><ul>
+<li><a href="#4-1-1-ji-ben-yu-fa">4.1.1 基本语法</a></li>
+<li><a href="#4-1-2-shuo-ming">4.1.2 说明</a></li>
+<li><a href="#4-1-3-she-zhi-mo-ren-yun-xing-ji-bie">4.1.3 设置默认运行级别</a></li>
+<li><a href="#4-1-4-huo-qu-dang-qian-mo-ren-yun-xing-ji-bie">4.1.4 获取当前默认运行级别</a></li>
+</ul>
+</li>
+<li><a href="#4-2-bang-zhu-zhi-ling">4.2 帮助指令</a><ul>
+<li><a href="#4-2-1-man-huo-de-bang-zhu-xin-xi">4.2.1 <code>man</code>获得帮助信息</a></li>
+<li><a href="#4-2-2-help-zhi-ling">4.2.2 <code>help</code>指令</a></li>
+</ul>
+</li>
+<li><a href="#4-3-wen-jian-mu-lu-lei-zhi-ling">4.3文件目录类指令</a></li>
+<li><a href="#4-3-1-xian-shi-dang-qian-gong-zuo-mu-lu-de-jue-dui-lu-jing">4.3.1 显示当前工作目录的绝对路径</a><ul>
+<li><a href="#4-3-2-cha-kan-dang-qian-mu-lu-nei-rong">4.3.2 查看当前目录内容</a></li>
+<li><a href="#4-3-3-qie-huan-dao-zhi-ding-mu-lu">4.3.3 切换到指定目录</a></li>
+<li><a href="#4-3-4-chuang-jian-mu-lu">4.3.4 创建目录</a></li>
+<li><a href="#4-3-5-shan-chu-kong-mu-lu">4.3.5 删除空目录</a></li>
+<li><a href="#4-3-6-chuang-jian-kong-wen-jian">4.3.6 创建空文件</a></li>
+<li><a href="#4-3-7-kao-bei-zhi-ling">4.3.7 拷贝指令</a></li>
+<li><a href="#4-3-8-zhi-ling-yi-chu-wen-jian-huo-mu-lu">4.3.8 指令移除文件或目录</a></li>
+<li><a href="#4-3-9-yi-dong-wen-jian-yu-mu-lu-chong-ming-ming">4.3.9 移动文件与目录重命名</a></li>
+<li><a href="#4-3-10-cha-kan-wen-jian-nei-rong">4.3.10 查看文件内容</a></li>
+<li><a href="#4-3-11-more-zhi-ling">4.3.11 more指令</a></li>
+<li><a href="#4-3-12-less-zhi-ling">4.3.12 less指令</a></li>
+<li><a href="#4-3-13-echo-zhi-ling">4.3.13 echo指令</a></li>
+<li><a href="#4-3-14-head-zhi-ling">4.3.14 head指令</a></li>
+<li><a href="#4-3-15-tail-zhi-ling">4.3.15 tail指令</a></li>
+<li><a href="#4-3-16-he-shu-chu-chong-ding-xiang-he-zhui-jia-zhi-ling">4.3.16 &gt; 和 &gt;&gt; （输出重定向和追加）指令</a></li>
+<li><a href="#4-3-16-ln-zhi-ling">4.3.16 ln指令</a></li>
+<li><a href="#4-3-17-history-zhi-ling">4.3.17 history指令</a></li>
+</ul>
+</li>
+<li><a href="#4-4-shi-jian-ri-qi-lei-zhi-ling">4.4 时间日期类指令</a><ul>
+<li><a href="#4-4-1-date-zhi-ling-xian-shi-dang-qian-ri-qi">4.4.1 date指令-显示当前日期</a></li>
+<li><a href="#4-4-2-date-zhi-ling-she-zhi-ri-qi">4.4.2 date指令-设置日期</a></li>
+<li><a href="#4-4-3-cal-zhi-ling-cha-kan-ri-li">4.4.3 cal指令（查看日历）</a></li>
+</ul>
+</li>
+<li><a href="#4-5-sou-suo-cha-zhao-lei-zhi-ling">4.5搜索查找类指令</a><ul>
+<li><a href="#4-5-1-find-zhi-ling">4.5.1 find指令</a></li>
+<li><a href="#4-5-2-locate-zhi-ling">4.5.2 locate指令</a></li>
+<li><a href="#4-5-3-grep-zhi-ling-he-guan-dao-fu-hao">4.5.3 grep指令和 | 管道符号</a></li>
+</ul>
+</li>
+<li><a href="#4-6-ya-suo-he-jie-ya-lei">4.6压缩和解压类</a><ul>
+<li><a href="#4-6-1-gzip-he-gunzip-zhi-ling">4.6.1 gzip 和 gunzip 指令</a></li>
+<li><a href="#4-6-2-zip-he-unzip-zhi-ling">4.6.2 zip 和 unzip 指令</a></li>
+<li><a href="#4-6-3-tar-zhi-ling">4.6.3 tar 指令</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#wu-zu-guan-li-he-quan-xian-guan-li">五、 组管理和权限管理</a><ul>
+<li><a href="#5-1-linux-zu-ji-ben-jie-shao">5.1 Linux组基本介绍</a></li>
+<li><a href="#5-2-wen-jian-mu-lu-suo-you-zhe">5.2文件/目录 所有者</a><ul>
+<li><a href="#5-2-1-cha-kan-wen-jian-de-suo-you-zhe">5.2.1 查看文件的所有者</a></li>
+<li><a href="#5-2-2-xiu-gai-wen-jian-de-suo-you-zhe">5.2.2 修改文件的所有者</a></li>
+</ul>
+</li>
+<li><a href="#5-3-zu-de-chuang-jian">5.3 组的创建</a></li>
+<li><a href="#5-4-wen-jian-mu-lu-suo-zai-zu">5.4 文件/目录 所在组</a><ul>
+<li><a href="#5-4-1-cha-kan-wen-jian-de-suo-zai-zu">5.4.1 查看文件的所在组</a></li>
+<li><a href="#5-4-2-xiu-gai-wen-jian-de-suo-zai-zu">5.4.2 修改文件的所在组</a></li>
+<li><a href="#5-5-gai-bian-yong-hu-suo-zai-de-zu">5.5 改变用户所在的组</a></li>
+</ul>
+</li>
+<li><a href="#5-6-quan-xian-de-ji-ben-jie-shao">5.6 权限的基本介绍</a></li>
+<li><a href="#5-7-rwx-quan-xian-xiang-jie">5.7 rwx权限详解</a><ul>
+<li><a href="#5-7-1-rwx-zuo-yong-dao-wen-jian">5.7.1 rwx作用到文件</a></li>
+<li><a href="#5-7-2-rwx-zuo-yong-dao-mu-lu">5.7.2 rwx作用到目录</a></li>
+</ul>
+</li>
+<li><a href="#5-8-xiu-gai-quan-xian-chmod-zhi-ling">5.8 修改权限 - chmod指令</a><ul>
+<li><a href="#5-8-1-di-yi-chong-fang-shi-bian-geng-quan-xian">5.8.1 第一种方式：+、-、=变更权限</a></li>
+<li><a href="#5-8-2-di-er-chong-fang-shi-tong-guo-shu-zi-bian-geng-quan-xian">5.8.2 第二种方式：通过数字变更权限</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#liu-ding-shi-ren-wu-diao-du">六、定时任务调度</a><ul>
+<li><a href="#6-1-crond-ren-wu-diao-du">6.1 crond 任务调度</a><ul>
+<li><a href="#6-1-1-ji-ben-gai-nian">6.1.1 基本概念</a></li>
+<li><a href="#6-1-2-ji-ben-zhi-ling">6.1.2 基本指令</a></li>
+<li><a href="#6-1-3-chang-yong-xuan-xiang">6.1.3 常用选项</a></li>
+<li><a href="#6-1-4-kuai-su-ru-men">6.1.4 快速入门</a></li>
+</ul>
+</li>
+<li><a href="#6-2-at">6.2 at</a><ul>
+<li><a href="#6-2-1-ji-ben-jie-shao">6.2.1 基本介绍</a></li>
+<li><a href="#6-2-2-ming-ling-ge-shi">6.2.2 命令格式</a></li>
+<li><a href="#6-2-3-ming-ling-xuan-xiang">6.2.3 命令选项</a></li>
+<li><a href="#6-2-4-at-shi-jian-ding-yi">6.2.4 at时间定义</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#qi-linux-ci-pan-fen-qu-gua-zai">七、Linux磁盘分区，挂载</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h1><span id="yi-linux-jie-shao">一、Linux介绍</span><a href="#yi-linux-jie-shao" class="header-anchor">#</a></h1><h2><span id="1-1-gai-shu">1.1概述</span><a href="#1-1-gai-shu" class="header-anchor">#</a></h2><p>Linux,全称GNU/Linux,是一个开源、免费的操作系统，其稳定性、安全性、处理多并发的优点已经得到业界认可，很多企业级的项目（c/c++/php/python/java/go)都会部署到Linux/unix系统上。</p>
+<h2><span id="1-2linux-zhu-yao-fa-xing-ban">1.2Linux主要发行版</span><a href="#1-2linux-zhu-yao-fa-xing-ban" class="header-anchor">#</a></h2><p>Ubuntu(乌班图)、RedHat(红帽)、CentOS、Debain（蝶变）、Fedora、SuSE、OpenSUSE</p>
+<h2><span id="1-3-linux-mu-lu-jie-gou">1.3 Linux目录结构</span><a href="#1-3-linux-mu-lu-jie-gou" class="header-anchor">#</a></h2><p><strong>在Linux世界里，一切皆文件</strong></p>
 <span id="more"></span>  
 <p><code> 1./bin  [常用] （usr/bin、/usr/local/bin）</code><br>是Binary的缩写，这个目录里存放着经常使用的命令<br><code>2./sbin (/usr/sbin、usr/local/sbin) </code><br>s就是Super User 的意思，这里存放的是系统管理员使用的系统管理程序。<br><code>3./home  [常用]  </code><br>存放普通用户的主目录，在Linux中每个用户都有一个自己的目录，一般该目录是以用户的账号命名<br><code>4./root  [常用] </code><br>该目录为系统管理员，也称作超级权限者的用户主目录<br><code>5./lib </code><br>系统开机所需要最基本的动态链接共享库，其作用类似于Windows里的DLL文件。几乎所有的应用程序都需要用到这些共享库<br><code>6./lost+found </code><br>这个目录一般情况下是空的，当系统非法关机后，这里就存放了一些文件<br><code>7./etc  [常用]  </code><br>所有的系统管理所需要的配置文件和子目录，比如安装mysql数据库my.conf<br><code>8./usr  [常用] </code><br>这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似与windows下的program files 目录。<br><code>9./boot  [常用] </code><br>存放的是启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件<br><code>10./proc  [不能动] </code><br>这个目录是一个虚拟的目录，它是系统内存的映射，访问这个目录来获取系统信息<br><code> 11./src  [不能动]</code><br>service缩写，该目录存放一些服务启动之后需要提取的数据<br><code>12./sys  [不能动] </code><br>这是Linux2.6内核的一个很大的变化。该目录下安装的2.6内核中新出现的一个文件系统sysfs<br><code>13./tmp </code><br>这个目录是用来存放一些临时文件的<br><code>14. /dev </code><br>类似于Window的设备管理器，把所有硬件用文件的形式存储<br><code>15./media  [常用]</code><br>linux系统会自动识别一些设备，例如U盘、光驱等等，当识别后，linux会把识别的设备挂载到这个目录下<br><code>16./mnt  [常用] </code><br>系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将外部的存储挂载在/mnt/上，然后进入该目录就可以查看里面的内容了<br><code>17. /opt</code><br>这是给主机额外安装软件所存放的目录。如安装ORACLE数据库就可放到该目录下。默认为空<br><code>18./usr/local  [常用] </code><br>这是另一个给主机额外安装软件所存放的目录。一般是通过编译源码方式安装的程序<br><code>19./var  [常用] </code><br>这个目录中存放着在不断扩充着的东西，习惯将经常被修改的目录放在这个目录下。包括各种日志文件<br><code>20./selinux [security-enhanced linux] </code><br>SELinux 是一种安全子系统，它能控制程序只能访问特定文件，有三种工作模式，可以自行设置  </p>
-<h1 id="二、开机、重启与用户登录注销指令"><a href="#二、开机、重启与用户登录注销指令" class="headerlink" title="二、开机、重启与用户登录注销指令"></a>二、开机、重启与用户登录注销指令</h1><h2 id="2-1-关机-amp-重启指令"><a href="#2-1-关机-amp-重启指令" class="headerlink" title="2.1 关机&amp;重启指令"></a>2.1 关机&amp;重启指令</h2><h3 id="2-1-1-基本介绍"><a href="#2-1-1-基本介绍" class="headerlink" title="2.1.1 基本介绍"></a>2.1.1 基本介绍</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shutdown -h now                           立刻进行关机</span><br><span class="line">shutdow -h l                              <span class="string">&quot;hello,l分钟后会关机了&quot;</span></span><br><span class="line">shutdow -r now                            现在重启计算机</span><br><span class="line">halt                                      关机，和上面作用一样</span><br><span class="line">reboot                                    现在重启计算机</span><br><span class="line">sync                                      把内存的数据同步到磁盘</span><br></pre></td></tr></table></figure>
-<h3 id="2-1-2-使用细节"><a href="#2-1-2-使用细节" class="headerlink" title="2.1.2 使用细节"></a>2.1.2 使用细节</h3><p>1.不管是重启系统还是关闭系统，首先运行sync,把内存中的数据写入到磁盘中<br>2.目前的 <code>shutdown/reboot/halt</code> 等指令均已在关机前进行了sync<br><strong>tips:小心驶得万年船</strong></p>
-<h2 id="2-2-用户登录和注销"><a href="#2-2-用户登录和注销" class="headerlink" title="2.2 用户登录和注销"></a>2.2 用户登录和注销</h2><h3 id="2-2-1-基本介绍"><a href="#2-2-1-基本介绍" class="headerlink" title="2.2.1 基本介绍"></a>2.2.1 基本介绍</h3><p>1.登录是尽量少用<strong>root</strong>用户登录，因为其是系统管理员，权限最大。避免操作失误，可以用普通用户登录，之后用<code>su -root </code>切换到系统管理员身份。<br>2.在提示符下输入<code>logout</code>即可注销用户。</p>
-<h3 id="2-2-2-使用细节"><a href="#2-2-2-使用细节" class="headerlink" title="2.2.2 使用细节"></a>2.2.2 使用细节</h3><p>1.<code>logout</code>注销指令在图形界面级别下无效，在运行级别3下有效</p>
-<h1 id="三、用户管理指令"><a href="#三、用户管理指令" class="headerlink" title="三、用户管理指令"></a>三、用户管理指令</h1><h2 id="3-1-添加用户"><a href="#3-1-添加用户" class="headerlink" title="3.1 添加用户"></a>3.1 添加用户</h2><h3 id="3-1-1-基本语法"><a href="#3-1-1-基本语法" class="headerlink" title="3.1.1 基本语法"></a>3.1.1 基本语法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd [用户名]</span><br></pre></td></tr></table></figure>
+<h1><span id="er-kai-ji-chong-qi-yu-yong-hu-deng-lu-zhu-xiao-zhi-ling">二、开机、重启与用户登录注销指令</span><a href="#er-kai-ji-chong-qi-yu-yong-hu-deng-lu-zhu-xiao-zhi-ling" class="header-anchor">#</a></h1><h2><span id="2-1-guan-ji-amp-chong-qi-zhi-ling">2.1 关机&amp;重启指令</span><a href="#2-1-guan-ji-amp-chong-qi-zhi-ling" class="header-anchor">#</a></h2><h3><span id="2-1-1-ji-ben-jie-shao">2.1.1 基本介绍</span><a href="#2-1-1-ji-ben-jie-shao" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shutdown -h now                           立刻进行关机</span><br><span class="line">shutdow -h l                              <span class="string">&quot;hello,l分钟后会关机了&quot;</span></span><br><span class="line">shutdow -r now                            现在重启计算机</span><br><span class="line">halt                                      关机，和上面作用一样</span><br><span class="line">reboot                                    现在重启计算机</span><br><span class="line">sync                                      把内存的数据同步到磁盘</span><br></pre></td></tr></table></figure>
+<h3><span id="2-1-2-shi-yong-xi-jie">2.1.2 使用细节</span><a href="#2-1-2-shi-yong-xi-jie" class="header-anchor">#</a></h3><p>1.不管是重启系统还是关闭系统，首先运行sync,把内存中的数据写入到磁盘中<br>2.目前的 <code>shutdown/reboot/halt</code> 等指令均已在关机前进行了sync<br><strong>tips:小心驶得万年船</strong></p>
+<h2><span id="2-2-yong-hu-deng-lu-he-zhu-xiao">2.2 用户登录和注销</span><a href="#2-2-yong-hu-deng-lu-he-zhu-xiao" class="header-anchor">#</a></h2><h3><span id="2-2-1-ji-ben-jie-shao">2.2.1 基本介绍</span><a href="#2-2-1-ji-ben-jie-shao" class="header-anchor">#</a></h3><p>1.登录是尽量少用<strong>root</strong>用户登录，因为其是系统管理员，权限最大。避免操作失误，可以用普通用户登录，之后用<code>su -root </code>切换到系统管理员身份。<br>2.在提示符下输入<code>logout</code>即可注销用户。</p>
+<h3><span id="2-2-2-shi-yong-xi-jie">2.2.2 使用细节</span><a href="#2-2-2-shi-yong-xi-jie" class="header-anchor">#</a></h3><p>1.<code>logout</code>注销指令在图形界面级别下无效，在运行级别3下有效</p>
+<h1><span id="san-yong-hu-guan-li-zhi-ling">三、用户管理指令</span><a href="#san-yong-hu-guan-li-zhi-ling" class="header-anchor">#</a></h1><h2><span id="3-1-tian-jia-yong-hu">3.1 添加用户</span><a href="#3-1-tian-jia-yong-hu" class="header-anchor">#</a></h2><h3><span id="3-1-1-ji-ben-yu-fa">3.1.1 基本语法</span><a href="#3-1-1-ji-ben-yu-fa" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd [用户名]</span><br></pre></td></tr></table></figure>
 <p>###3.1.2使用细节<br>1.当创建用户成功后，会自动创建和用户同名的家目录<br>2.也可以通过<code>useradd -d 指定目录 新的用户名</code>，给创建的用户指定家目录</p>
-<h2 id="3-2-指定-修改密码"><a href="#3-2-指定-修改密码" class="headerlink" title="3.2 指定/修改密码"></a>3.2 指定/修改密码</h2><h3 id="3-2-1-基本语法"><a href="#3-2-1-基本语法" class="headerlink" title="3.2.1 基本语法"></a>3.2.1 基本语法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd [用户名]</span><br></pre></td></tr></table></figure>
-<h2 id="3-3-删除用户"><a href="#3-3-删除用户" class="headerlink" title="3.3 删除用户"></a>3.3 删除用户</h2><h3 id="3-3-1-基本语法"><a href="#3-3-1-基本语法" class="headerlink" title="3.3.1 基本语法"></a>3.3.1 基本语法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel [用户]</span><br></pre></td></tr></table></figure>
-<h3 id="3-3-2-使用细节"><a href="#3-3-2-使用细节" class="headerlink" title="3.3.2 使用细节"></a>3.3.2 使用细节</h3><p>1.<code>userdel</code>只删除用户，保留家目录；<code>userdel -r</code>，删除用户及家目录。一般保留家目录。 </p>
-<h2 id="3-4查询用户信息指令"><a href="#3-4查询用户信息指令" class="headerlink" title="3.4查询用户信息指令"></a>3.4查询用户信息指令</h2><h3 id="3-4-1-基本语法"><a href="#3-4-1-基本语法" class="headerlink" title="3.4.1 基本语法"></a>3.4.1 基本语法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id [用户名]</span><br></pre></td></tr></table></figure>
-<h3 id="3-4-2-使用细节"><a href="#3-4-2-使用细节" class="headerlink" title="3.4.2 使用细节"></a>3.4.2 使用细节</h3><p>1.当用户不存在时，返回无此用户</p>
-<h2 id="3-5-切换用户"><a href="#3-5-切换用户" class="headerlink" title="3.5 切换用户"></a>3.5 切换用户</h2><h3 id="3-5-1-基本语法"><a href="#3-5-1-基本语法" class="headerlink" title="3.5.1 基本语法"></a>3.5.1 基本语法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su -[切换用户名]</span><br></pre></td></tr></table></figure>
-<h3 id="3-5-2-使用细节"><a href="#3-5-2-使用细节" class="headerlink" title="3.5.2 使用细节"></a>3.5.2 使用细节</h3><p>1.当从权限高的用户切换到权限低的用户时不需要密码，反之需要<br>2.当需要返回原来的用户时，使用<code>exit/logout</code>指令</p>
-<h2 id="3-6-查看当前用户"><a href="#3-6-查看当前用户" class="headerlink" title="3.6 查看当前用户"></a>3.6 查看当前用户</h2><h3 id="3-6-1-基本语法"><a href="#3-6-1-基本语法" class="headerlink" title="3.6.1 基本语法"></a>3.6.1 基本语法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">who am i</span><br></pre></td></tr></table></figure>
-<h2 id="3-7-用户组"><a href="#3-7-用户组" class="headerlink" title="3.7 用户组"></a>3.7 用户组</h2><h3 id="3-7-1-新增组"><a href="#3-7-1-新增组" class="headerlink" title="3.7.1 新增组"></a>3.7.1 新增组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd [组名]</span><br></pre></td></tr></table></figure>
-<h3 id="3-7-2-删除组"><a href="#3-7-2-删除组" class="headerlink" title="3.7.2 删除组"></a>3.7.2 删除组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupdel [组名]</span><br></pre></td></tr></table></figure>
-<h3 id="3-7-3-修改用户的组"><a href="#3-7-3-修改用户的组" class="headerlink" title="3.7.3 修改用户的组"></a>3.7.3 修改用户的组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -g [用户组] [用户名]</span><br></pre></td></tr></table></figure>
-<h2 id="3-8-用户和组相关文件"><a href="#3-8-用户和组相关文件" class="headerlink" title="3.8 用户和组相关文件"></a>3.8 用户和组相关文件</h2><h3 id="3-8-1"><a href="#3-8-1" class="headerlink" title="3.8.1"></a>3.8.1</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/passwd</span><br></pre></td></tr></table></figure>
+<h2><span id="3-2-zhi-ding-xiu-gai-mi-ma">3.2 指定/修改密码</span><a href="#3-2-zhi-ding-xiu-gai-mi-ma" class="header-anchor">#</a></h2><h3><span id="3-2-1-ji-ben-yu-fa">3.2.1 基本语法</span><a href="#3-2-1-ji-ben-yu-fa" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd [用户名]</span><br></pre></td></tr></table></figure>
+<h2><span id="3-3-shan-chu-yong-hu">3.3 删除用户</span><a href="#3-3-shan-chu-yong-hu" class="header-anchor">#</a></h2><h3><span id="3-3-1-ji-ben-yu-fa">3.3.1 基本语法</span><a href="#3-3-1-ji-ben-yu-fa" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel [用户]</span><br></pre></td></tr></table></figure>
+<h3><span id="3-3-2-shi-yong-xi-jie">3.3.2 使用细节</span><a href="#3-3-2-shi-yong-xi-jie" class="header-anchor">#</a></h3><p>1.<code>userdel</code>只删除用户，保留家目录；<code>userdel -r</code>，删除用户及家目录。一般保留家目录。 </p>
+<h2><span id="3-4-cha-xun-yong-hu-xin-xi-zhi-ling">3.4查询用户信息指令</span><a href="#3-4-cha-xun-yong-hu-xin-xi-zhi-ling" class="header-anchor">#</a></h2><h3><span id="3-4-1-ji-ben-yu-fa">3.4.1 基本语法</span><a href="#3-4-1-ji-ben-yu-fa" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id [用户名]</span><br></pre></td></tr></table></figure>
+<h3><span id="3-4-2-shi-yong-xi-jie">3.4.2 使用细节</span><a href="#3-4-2-shi-yong-xi-jie" class="header-anchor">#</a></h3><p>1.当用户不存在时，返回无此用户</p>
+<h2><span id="3-5-qie-huan-yong-hu">3.5 切换用户</span><a href="#3-5-qie-huan-yong-hu" class="header-anchor">#</a></h2><h3><span id="3-5-1-ji-ben-yu-fa">3.5.1 基本语法</span><a href="#3-5-1-ji-ben-yu-fa" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su -[切换用户名]</span><br></pre></td></tr></table></figure>
+<h3><span id="3-5-2-shi-yong-xi-jie">3.5.2 使用细节</span><a href="#3-5-2-shi-yong-xi-jie" class="header-anchor">#</a></h3><p>1.当从权限高的用户切换到权限低的用户时不需要密码，反之需要<br>2.当需要返回原来的用户时，使用<code>exit/logout</code>指令</p>
+<h2><span id="3-6-cha-kan-dang-qian-yong-hu">3.6 查看当前用户</span><a href="#3-6-cha-kan-dang-qian-yong-hu" class="header-anchor">#</a></h2><h3><span id="3-6-1-ji-ben-yu-fa">3.6.1 基本语法</span><a href="#3-6-1-ji-ben-yu-fa" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">who am i</span><br></pre></td></tr></table></figure>
+<h2><span id="3-7-yong-hu-zu">3.7 用户组</span><a href="#3-7-yong-hu-zu" class="header-anchor">#</a></h2><h3><span id="3-7-1-xin-zeng-zu">3.7.1 新增组</span><a href="#3-7-1-xin-zeng-zu" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd [组名]</span><br></pre></td></tr></table></figure>
+<h3><span id="3-7-2-shan-chu-zu">3.7.2 删除组</span><a href="#3-7-2-shan-chu-zu" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupdel [组名]</span><br></pre></td></tr></table></figure>
+<h3><span id="3-7-3-xiu-gai-yong-hu-de-zu">3.7.3 修改用户的组</span><a href="#3-7-3-xiu-gai-yong-hu-de-zu" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -g [用户组] [用户名]</span><br></pre></td></tr></table></figure>
+<h2><span id="3-8-yong-hu-he-zu-xiang-guan-wen-jian">3.8 用户和组相关文件</span><a href="#3-8-yong-hu-he-zu-xiang-guan-wen-jian" class="header-anchor">#</a></h2><h3><span id="3-8-1">3.8.1</span><a href="#3-8-1" class="header-anchor">#</a></h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/passwd</span><br></pre></td></tr></table></figure>
 <p> 说明：用户（user）的配置文件，记录用户的各种信息<br> 每行的含义：用户名：口令:用户标识号：组标识号：注释性描述：主目录：登录Shell</p>
-<h3 id="3-8-2"><a href="#3-8-2" class="headerlink" title="3.8.2"></a>3.8.2</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/shadow</span><br></pre></td></tr></table></figure>
+<h3><span id="3-8-2">3.8.2</span><a href="#3-8-2" class="header-anchor">#</a></h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/shadow</span><br></pre></td></tr></table></figure>
 <p> 说明：口令的配置文件<br> 每行的含义：登录名：加密口令：最后一次修改时间：最小时间间隔：最大时间间隔：警告时间：不活动时间：失效时间：标志</p>
-<h3 id="3-8-3"><a href="#3-8-3" class="headerlink" title="3.8.3"></a>3.8.3</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/group</span><br></pre></td></tr></table></figure>
+<h3><span id="3-8-3">3.8.3</span><a href="#3-8-3" class="header-anchor">#</a></h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/group</span><br></pre></td></tr></table></figure>
 <p> 说明：组（group）的配置文件，记录Linux包含的组的信息<br> 每行的含义：组名：口令：组标识号：组内用户列表</p>
-<h1 id="四、实用指令"><a href="#四、实用指令" class="headerlink" title="四、实用指令"></a>四、实用指令</h1><h2 id="4-1-指定运行级别"><a href="#4-1-指定运行级别" class="headerlink" title="4.1 指定运行级别"></a>4.1 指定运行级别</h2><h3 id="4-1-1-基本语法"><a href="#4-1-1-基本语法" class="headerlink" title="4.1.1 基本语法"></a>4.1.1 基本语法</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">init 0</span><br><span class="line">init 1</span><br><span class="line">init 2</span><br><span class="line">init 3</span><br><span class="line">init 4</span><br><span class="line">init 5</span><br><span class="line">init 6</span><br></pre></td></tr></table></figure>
-<h3 id="4-1-2-说明"><a href="#4-1-2-说明" class="headerlink" title="4.1.2 说明"></a>4.1.2 说明</h3><p> 0：关机<br> 1：单用户【找回丢失密码】<br> 2：多用户状态无网络服务<br> <strong>3：多用户状态有网络服务</strong><br> 4:系统未实用保留给用户<br> 5：图形界面<br> 6：系统重启<br>常用运行级别是3和5，也可以指定默认运行级别</p>
-<h3 id="4-1-3-设置默认运行级别"><a href="#4-1-3-设置默认运行级别" class="headerlink" title="4.1.3 设置默认运行级别"></a>4.1.3 设置默认运行级别</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl set-default TARGET.target</span><br></pre></td></tr></table></figure>
-<h3 id="4-1-4-获取当前默认运行级别"><a href="#4-1-4-获取当前默认运行级别" class="headerlink" title="4.1.4 获取当前默认运行级别"></a>4.1.4 获取当前默认运行级别</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl get-default</span><br></pre></td></tr></table></figure>
-<h2 id="4-2-帮助指令"><a href="#4-2-帮助指令" class="headerlink" title="4.2 帮助指令"></a>4.2 帮助指令</h2><h3 id="4-2-1-man获得帮助信息"><a href="#4-2-1-man获得帮助信息" class="headerlink" title="4.2.1 man获得帮助信息"></a>4.2.1 <code>man</code>获得帮助信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man [命令或配置文件]</span><br></pre></td></tr></table></figure>
+<h1><span id="si-shi-yong-zhi-ling">四、实用指令</span><a href="#si-shi-yong-zhi-ling" class="header-anchor">#</a></h1><h2><span id="4-1-zhi-ding-yun-xing-ji-bie">4.1 指定运行级别</span><a href="#4-1-zhi-ding-yun-xing-ji-bie" class="header-anchor">#</a></h2><h3><span id="4-1-1-ji-ben-yu-fa">4.1.1 基本语法</span><a href="#4-1-1-ji-ben-yu-fa" class="header-anchor">#</a></h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">init 0</span><br><span class="line">init 1</span><br><span class="line">init 2</span><br><span class="line">init 3</span><br><span class="line">init 4</span><br><span class="line">init 5</span><br><span class="line">init 6</span><br></pre></td></tr></table></figure>
+<h3><span id="4-1-2-shuo-ming">4.1.2 说明</span><a href="#4-1-2-shuo-ming" class="header-anchor">#</a></h3><p> 0：关机<br> 1：单用户【找回丢失密码】<br> 2：多用户状态无网络服务<br> <strong>3：多用户状态有网络服务</strong><br> 4:系统未实用保留给用户<br> 5：图形界面<br> 6：系统重启<br>常用运行级别是3和5，也可以指定默认运行级别</p>
+<h3><span id="4-1-3-she-zhi-mo-ren-yun-xing-ji-bie">4.1.3 设置默认运行级别</span><a href="#4-1-3-she-zhi-mo-ren-yun-xing-ji-bie" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl set-default TARGET.target</span><br></pre></td></tr></table></figure>
+<h3><span id="4-1-4-huo-qu-dang-qian-mo-ren-yun-xing-ji-bie">4.1.4 获取当前默认运行级别</span><a href="#4-1-4-huo-qu-dang-qian-mo-ren-yun-xing-ji-bie" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl get-default</span><br></pre></td></tr></table></figure>
+<h2><span id="4-2-bang-zhu-zhi-ling">4.2 帮助指令</span><a href="#4-2-bang-zhu-zhi-ling" class="header-anchor">#</a></h2><h3><span id="4-2-1-man-huo-de-bang-zhu-xin-xi">4.2.1 <code>man</code>获得帮助信息</span><a href="#4-2-1-man-huo-de-bang-zhu-xin-xi" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man [命令或配置文件]</span><br></pre></td></tr></table></figure>
 <p>例子：<code>man ls</code></p>
-<h3 id="4-2-2-help指令"><a href="#4-2-2-help指令" class="headerlink" title="4.2.2 help指令"></a>4.2.2 <code>help</code>指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">help</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-3文件目录类指令"><a href="#4-3文件目录类指令" class="headerlink" title="4.3文件目录类指令"></a>4.3文件目录类指令</h2><h2 id="4-3-1-显示当前工作目录的绝对路径"><a href="#4-3-1-显示当前工作目录的绝对路径" class="headerlink" title="4.3.1 显示当前工作目录的绝对路径"></a>4.3.1 显示当前工作目录的绝对路径</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
-<h3 id="4-3-2-查看当前目录内容"><a href="#4-3-2-查看当前目录内容" class="headerlink" title="4.3.2 查看当前目录内容"></a>4.3.2 查看当前目录内容</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls [选项] [目录或者文件]</span><br></pre></td></tr></table></figure>
+<h3><span id="4-2-2-help-zhi-ling">4.2.2 <code>help</code>指令</span><a href="#4-2-2-help-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+<h2><span id="4-3-wen-jian-mu-lu-lei-zhi-ling">4.3文件目录类指令</span><a href="#4-3-wen-jian-mu-lu-lei-zhi-ling" class="header-anchor">#</a></h2><h2><span id="4-3-1-xian-shi-dang-qian-gong-zuo-mu-lu-de-jue-dui-lu-jing">4.3.1 显示当前工作目录的绝对路径</span><a href="#4-3-1-xian-shi-dang-qian-gong-zuo-mu-lu-de-jue-dui-lu-jing" class="header-anchor">#</a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-2-cha-kan-dang-qian-mu-lu-nei-rong">4.3.2 查看当前目录内容</span><a href="#4-3-2-cha-kan-dang-qian-mu-lu-nei-rong" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls [选项] [目录或者文件]</span><br></pre></td></tr></table></figure>
 <p>常用选项<br>-a：显示当前目录的所有文件和目录，包括隐藏的<br>-l：以列表的方式显示信息</p>
-<h3 id="4-3-3-切换到指定目录"><a href="#4-3-3-切换到指定目录" class="headerlink" title="4.3.3 切换到指定目录"></a>4.3.3 切换到指定目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> [参数]</span><br><span class="line"><span class="built_in">cd</span> ~                                切换到自己的家目录</span><br><span class="line"><span class="built_in">cd</span> ..                               返回当前目录的上一级目录</span><br></pre></td></tr></table></figure>
-<h3 id="4-3-4-创建目录"><a href="#4-3-4-创建目录" class="headerlink" title="4.3.4 创建目录"></a>4.3.4 创建目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir [选项] [要创建的目录]</span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-3-qie-huan-dao-zhi-ding-mu-lu">4.3.3 切换到指定目录</span><a href="#4-3-3-qie-huan-dao-zhi-ding-mu-lu" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> [参数]</span><br><span class="line"><span class="built_in">cd</span> ~                                切换到自己的家目录</span><br><span class="line"><span class="built_in">cd</span> ..                               返回当前目录的上一级目录</span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-4-chuang-jian-mu-lu">4.3.4 创建目录</span><a href="#4-3-4-chuang-jian-mu-lu" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir [选项] [要创建的目录]</span><br></pre></td></tr></table></figure>
 <p>常用选项<br>-p：创建多级目录</p>
-<h3 id="4-3-5-删除空目录"><a href="#4-3-5-删除空目录" class="headerlink" title="4.3.5 删除空目录"></a>4.3.5 删除空目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir [选项] [要删除的空目录]</span><br></pre></td></tr></table></figure>
-<h3 id="4-3-6-创建空文件"><a href="#4-3-6-创建空文件" class="headerlink" title="4.3.6 创建空文件"></a>4.3.6 创建空文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch [文件名称]</span><br></pre></td></tr></table></figure>
-<h3 id="4-3-7-拷贝指令"><a href="#4-3-7-拷贝指令" class="headerlink" title="4.3.7 拷贝指令"></a>4.3.7 拷贝指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp [选项] [源文件] [目标目录]</span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-5-shan-chu-kong-mu-lu">4.3.5 删除空目录</span><a href="#4-3-5-shan-chu-kong-mu-lu" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir [选项] [要删除的空目录]</span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-6-chuang-jian-kong-wen-jian">4.3.6 创建空文件</span><a href="#4-3-6-chuang-jian-kong-wen-jian" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch [文件名称]</span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-7-kao-bei-zhi-ling">4.3.7 拷贝指令</span><a href="#4-3-7-kao-bei-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp [选项] [源文件] [目标目录]</span><br></pre></td></tr></table></figure>
 <p>常用选项<br>-r：递归复制整个文件夹</p>
-<h3 id="4-3-8-指令移除文件或目录"><a href="#4-3-8-指令移除文件或目录" class="headerlink" title="4.3.8 指令移除文件或目录"></a>4.3.8 指令移除文件或目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm [选项] [要删除的文件或目录]</span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-8-zhi-ling-yi-chu-wen-jian-huo-mu-lu">4.3.8 指令移除文件或目录</span><a href="#4-3-8-zhi-ling-yi-chu-wen-jian-huo-mu-lu" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm [选项] [要删除的文件或目录]</span><br></pre></td></tr></table></figure>
 <p>常用选项<br>-r：递归删除整个文件夹<br>-f：强制删除不提示</p>
-<h3 id="4-3-9-移动文件与目录重命名"><a href="#4-3-9-移动文件与目录重命名" class="headerlink" title="4.3.9 移动文件与目录重命名"></a>4.3.9 移动文件与目录重命名</h3><p>基本语法</p>
+<h3><span id="4-3-9-yi-dong-wen-jian-yu-mu-lu-chong-ming-ming">4.3.9 移动文件与目录重命名</span><a href="#4-3-9-yi-dong-wen-jian-yu-mu-lu-chong-ming-ming" class="header-anchor">#</a></h3><p>基本语法</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv [旧文件名] [新文件名]                   重命名</span><br><span class="line">mv [原文件] [新目录]                       移动文件</span><br></pre></td></tr></table></figure>
-<h3 id="4-3-10-查看文件内容"><a href="#4-3-10-查看文件内容" class="headerlink" title="4.3.10 查看文件内容"></a>4.3.10 查看文件内容</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat [选项] [要查看的文件]</span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-10-cha-kan-wen-jian-nei-rong">4.3.10 查看文件内容</span><a href="#4-3-10-cha-kan-wen-jian-nei-rong" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat [选项] [要查看的文件]</span><br></pre></td></tr></table></figure>
 <p>常用选项<br>-n：显示行号<br>使用细节<br><code>cat</code>只能浏览文件而不能修改文件，使用时一般带上管道命令 <code>| more</code></p>
-<h3 id="4-3-11-more指令"><a href="#4-3-11-more指令" class="headerlink" title="4.3.11 more指令"></a>4.3.11 more指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more [文件]</span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-11-more-zhi-ling">4.3.11 more指令</span><a href="#4-3-11-more-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more [文件]</span><br></pre></td></tr></table></figure>
 <p>more指令是一个基于VI的文本过滤器，它以全屏的方式按页显示文本文件的内容</p>
 <table>
 <thead>
@@ -270,7 +441,7 @@
 <td align="left">输出文件名和当前行的行号</td>
 </tr>
 </tbody></table>
-<h3 id="4-3-12-less指令"><a href="#4-3-12-less指令" class="headerlink" title="4.3.12 less指令"></a>4.3.12 less指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less [文件]</span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-12-less-zhi-ling">4.3.12 less指令</span><a href="#4-3-12-less-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less [文件]</span><br></pre></td></tr></table></figure>
 <p>less指令用来分屏查看文件内容，它的功能与more指令类似，但是比more指令更加强大，支持各种显示终端。less指令在显示文件内容时，并不是一次将整个文件健在之后才显示，而是根据显示需要加载内容，对于显示大型文件具有较高的效率。  </p>
 <table>
 <thead>
@@ -304,20 +475,20 @@
 <td align="left">退出程序</td>
 </tr>
 </tbody></table>
-<h3 id="4-3-13-echo指令"><a href="#4-3-13-echo指令" class="headerlink" title="4.3.13 echo指令"></a>4.3.13 echo指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> [选项] [输出内容]                               </span><br></pre></td></tr></table></figure>
-<h3 id="4-3-14-head指令"><a href="#4-3-14-head指令" class="headerlink" title="4.3.14 head指令"></a>4.3.14 head指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">head [文件]</span><br><span class="line">head -n 5 [文件]                   查看文件的前5行内容</span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-13-echo-zhi-ling">4.3.13 echo指令</span><a href="#4-3-13-echo-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> [选项] [输出内容]                               </span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-14-head-zhi-ling">4.3.14 head指令</span><a href="#4-3-14-head-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">head [文件]</span><br><span class="line">head -n 5 [文件]                   查看文件的前5行内容</span><br></pre></td></tr></table></figure>
 <p>head默认查看文件的前十行内容</p>
-<h3 id="4-3-15-tail指令"><a href="#4-3-15-tail指令" class="headerlink" title="4.3.15 tail指令"></a>4.3.15 tail指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tail [文件]</span><br><span class="line">tail -n 5 [文件]                   查看文件尾部5行内容 </span><br><span class="line">tail -f                            实时追踪该文档的所有更新 </span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-15-tail-zhi-ling">4.3.15 tail指令</span><a href="#4-3-15-tail-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tail [文件]</span><br><span class="line">tail -n 5 [文件]                   查看文件尾部5行内容 </span><br><span class="line">tail -f                            实时追踪该文档的所有更新 </span><br></pre></td></tr></table></figure>
 <p>tail默认查看文件的尾部十行内容</p>
-<h3 id="4-3-16-gt-和-gt-gt-（输出重定向和追加）指令"><a href="#4-3-16-gt-和-gt-gt-（输出重定向和追加）指令" class="headerlink" title="4.3.16 &gt; 和 &gt;&gt; （输出重定向和追加）指令"></a>4.3.16 &gt; 和 &gt;&gt; （输出重定向和追加）指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -l &gt; [文件]  （功能描述：列表的内容写入文件中）</span><br><span class="line">ls -al &gt;&gt; [文件] （功能描述：列表的内容追加到文件的末尾）</span><br></pre></td></tr></table></figure>
-<h3 id="4-3-16-ln指令"><a href="#4-3-16-ln指令" class="headerlink" title="4.3.16 ln指令"></a>4.3.16 ln指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s [原文件目录] [软链接名] （功能描述：给原文件创建一个软链接）</span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-16-gt-he-gt-gt-shu-chu-chong-ding-xiang-he-zhui-jia-zhi-ling">4.3.16 &gt; 和 &gt;&gt; （输出重定向和追加）指令</span><a href="#4-3-16-gt-he-gt-gt-shu-chu-chong-ding-xiang-he-zhui-jia-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -l &gt; [文件]  （功能描述：列表的内容写入文件中）</span><br><span class="line">ls -al &gt;&gt; [文件] （功能描述：列表的内容追加到文件的末尾）</span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-16-ln-zhi-ling">4.3.16 ln指令</span><a href="#4-3-16-ln-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s [原文件目录] [软链接名] （功能描述：给原文件创建一个软链接）</span><br></pre></td></tr></table></figure>
 <p>软链接也称符号链接，类似于Windows里的快捷方式。</p>
-<h3 id="4-3-17-history指令"><a href="#4-3-17-history指令" class="headerlink" title="4.3.17 history指令"></a>4.3.17 history指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">history</span> (功能描述：查看已执行过的历史命令)</span><br></pre></td></tr></table></figure>
+<h3><span id="4-3-17-history-zhi-ling">4.3.17 history指令</span><a href="#4-3-17-history-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">history</span> (功能描述：查看已执行过的历史命令)</span><br></pre></td></tr></table></figure>
 
-<h2 id="4-4-时间日期类指令"><a href="#4-4-时间日期类指令" class="headerlink" title="4.4 时间日期类指令"></a>4.4 时间日期类指令</h2><h3 id="4-4-1-date指令-显示当前日期"><a href="#4-4-1-date指令-显示当前日期" class="headerlink" title="4.4.1 date指令-显示当前日期"></a>4.4.1 date指令-显示当前日期</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">date            (功能描述：显示当前时间)</span><br><span class="line">date +%Y        (功能描述：显示当前年份)</span><br><span class="line">date +%m        (功能描述：显示当前月份)</span><br><span class="line">date +%d        (功能描述：显示当前是哪一天)</span><br><span class="line">date +%Y-%m-%d-%H:%M:%S (功能描述：显示年月日时分秒)</span><br></pre></td></tr></table></figure>
-<h3 id="4-4-2-date指令-设置日期"><a href="#4-4-2-date指令-设置日期" class="headerlink" title="4.4.2 date指令-设置日期"></a>4.4.2 date指令-设置日期</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date -s <span class="string">&quot;时间&quot;</span></span><br></pre></td></tr></table></figure>
-<h3 id="4-4-3-cal指令（查看日历）"><a href="#4-4-3-cal指令（查看日历）" class="headerlink" title="4.4.3 cal指令（查看日历）"></a>4.4.3 cal指令（查看日历）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cal [选项] （功能描述：不加选项，显示本月日历）</span><br></pre></td></tr></table></figure>
-<h2 id="4-5搜索查找类指令"><a href="#4-5搜索查找类指令" class="headerlink" title="4.5搜索查找类指令"></a>4.5搜索查找类指令</h2><h3 id="4-5-1-find指令"><a href="#4-5-1-find指令" class="headerlink" title="4.5.1 find指令"></a>4.5.1 find指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find [搜索范围] [选项]</span><br></pre></td></tr></table></figure>
+<h2><span id="4-4-shi-jian-ri-qi-lei-zhi-ling">4.4 时间日期类指令</span><a href="#4-4-shi-jian-ri-qi-lei-zhi-ling" class="header-anchor">#</a></h2><h3><span id="4-4-1-date-zhi-ling-xian-shi-dang-qian-ri-qi">4.4.1 date指令-显示当前日期</span><a href="#4-4-1-date-zhi-ling-xian-shi-dang-qian-ri-qi" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">date            (功能描述：显示当前时间)</span><br><span class="line">date +%Y        (功能描述：显示当前年份)</span><br><span class="line">date +%m        (功能描述：显示当前月份)</span><br><span class="line">date +%d        (功能描述：显示当前是哪一天)</span><br><span class="line">date +%Y-%m-%d-%H:%M:%S (功能描述：显示年月日时分秒)</span><br></pre></td></tr></table></figure>
+<h3><span id="4-4-2-date-zhi-ling-she-zhi-ri-qi">4.4.2 date指令-设置日期</span><a href="#4-4-2-date-zhi-ling-she-zhi-ri-qi" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date -s <span class="string">&quot;时间&quot;</span></span><br></pre></td></tr></table></figure>
+<h3><span id="4-4-3-cal-zhi-ling-cha-kan-ri-li">4.4.3 cal指令（查看日历）</span><a href="#4-4-3-cal-zhi-ling-cha-kan-ri-li" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cal [选项] （功能描述：不加选项，显示本月日历）</span><br></pre></td></tr></table></figure>
+<h2><span id="4-5-sou-suo-cha-zhao-lei-zhi-ling">4.5搜索查找类指令</span><a href="#4-5-sou-suo-cha-zhao-lei-zhi-ling" class="header-anchor">#</a></h2><h3><span id="4-5-1-find-zhi-ling">4.5.1 find指令</span><a href="#4-5-1-find-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find [搜索范围] [选项]</span><br></pre></td></tr></table></figure>
 <p>find指令将从指定目录乡下递归地遍历其各个子目录，将满足条件的文件或者目录显示在终端。</p>
 <table>
 <thead>
@@ -339,9 +510,9 @@
 <td align="left">按照指定的文件大小查找文件</td>
 </tr>
 </tbody></table>
-<h3 id="4-5-2-locate指令"><a href="#4-5-2-locate指令" class="headerlink" title="4.5.2 locate指令"></a>4.5.2 locate指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locate [搜索文件]</span><br></pre></td></tr></table></figure>
+<h3><span id="4-5-2-locate-zhi-ling">4.5.2 locate指令</span><a href="#4-5-2-locate-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locate [搜索文件]</span><br></pre></td></tr></table></figure>
 <p>locate指令可以快速定位文件路径，locate指令利用事先建立的系统中所有文件名称及路径的locate数据库实现快速定位给定的文件。Locate指令无需遍历整个文件系统，查询速度较快。为了保证查询结果的准确度，管理员必须定期更新locate时刻。<br>tips：由于locate指令基于数据库进行查询，所以第一次运行前需使用 <code>updatedp </code>指令创建locate数据库</p>
-<h3 id="4-5-3-grep指令和-管道符号"><a href="#4-5-3-grep指令和-管道符号" class="headerlink" title="4.5.3 grep指令和 | 管道符号"></a>4.5.3 grep指令和 | 管道符号</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep [选项] [查找内容] [源文件]</span><br></pre></td></tr></table></figure>
+<h3><span id="4-5-3-grep-zhi-ling-he-guan-dao-fu-hao">4.5.3 grep指令和 | 管道符号</span><a href="#4-5-3-grep-zhi-ling-he-guan-dao-fu-hao" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep [选项] [查找内容] [源文件]</span><br></pre></td></tr></table></figure>
 <p>grep过滤查找，管道符号 | 表示将前一个命令的处理结果传递给后面的命令处理</p>
 <table>
 <thead>
@@ -359,10 +530,10 @@
 <td align="left">忽略字母大小写</td>
 </tr>
 </tbody></table>
-<h2 id="4-6压缩和解压类"><a href="#4-6压缩和解压类" class="headerlink" title="4.6压缩和解压类"></a>4.6压缩和解压类</h2><h3 id="4-6-1-gzip-和-gunzip-指令"><a href="#4-6-1-gzip-和-gunzip-指令" class="headerlink" title="4.6.1 gzip 和 gunzip 指令"></a>4.6.1 gzip 和 gunzip 指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gzip [文件] (功能描述：压缩文件，只能将文件压缩为*.gz文件)</span><br><span class="line">gunzip [文件.gz] （功能描述：解压缩文件指令）</span><br></pre></td></tr></table></figure>
-<h3 id="4-6-2-zip-和-unzip-指令"><a href="#4-6-2-zip-和-unzip-指令" class="headerlink" title="4.6.2 zip 和 unzip 指令"></a>4.6.2 zip 和 unzip 指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zip [选项] XXX.zip (功能描述：压缩文件)</span><br><span class="line">unzip [选项] XXX.zip （功能描述：解压缩文件）</span><br></pre></td></tr></table></figure>
+<h2><span id="4-6-ya-suo-he-jie-ya-lei">4.6压缩和解压类</span><a href="#4-6-ya-suo-he-jie-ya-lei" class="header-anchor">#</a></h2><h3><span id="4-6-1-gzip-he-gunzip-zhi-ling">4.6.1 gzip 和 gunzip 指令</span><a href="#4-6-1-gzip-he-gunzip-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gzip [文件] (功能描述：压缩文件，只能将文件压缩为*.gz文件)</span><br><span class="line">gunzip [文件.gz] （功能描述：解压缩文件指令）</span><br></pre></td></tr></table></figure>
+<h3><span id="4-6-2-zip-he-unzip-zhi-ling">4.6.2 zip 和 unzip 指令</span><a href="#4-6-2-zip-he-unzip-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zip [选项] XXX.zip (功能描述：压缩文件)</span><br><span class="line">unzip [选项] XXX.zip （功能描述：解压缩文件）</span><br></pre></td></tr></table></figure>
 <p><code> zip</code>指令常用选项<br><code>-r </code>:递归压缩，即压缩目录<br><code>unzip </code>指令常用选项<br><code>-d &lt;目录&gt;</code>:指定解压后文件存放目录</p>
-<h3 id="4-6-3-tar-指令"><a href="#4-6-3-tar-指令" class="headerlink" title="4.6.3 tar 指令"></a>4.6.3 tar 指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar [选项] XXX.tar.gz (功能描述，打包目录，压缩后的文件格式.tar.gz)</span><br></pre></td></tr></table></figure>
+<h3><span id="4-6-3-tar-zhi-ling">4.6.3 tar 指令</span><a href="#4-6-3-tar-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar [选项] XXX.tar.gz (功能描述，打包目录，压缩后的文件格式.tar.gz)</span><br></pre></td></tr></table></figure>
 
 <table>
 <thead>
@@ -392,26 +563,26 @@
 <td align="left">解包.tar文件</td>
 </tr>
 </tbody></table>
-<h1 id="五、-组管理和权限管理"><a href="#五、-组管理和权限管理" class="headerlink" title="五、 组管理和权限管理"></a>五、 组管理和权限管理</h1><h2 id="5-1-Linux组基本介绍"><a href="#5-1-Linux组基本介绍" class="headerlink" title="5.1 Linux组基本介绍"></a>5.1 Linux组基本介绍</h2><p>在Linux中的每个用户必须属于一个组，不能独立于组外。在Linux中每个文件有所有者、所在组、其它组的概念</p>
-<h2 id="5-2文件-目录-所有者"><a href="#5-2文件-目录-所有者" class="headerlink" title="5.2文件/目录 所有者"></a>5.2文件/目录 所有者</h2><p>一般为文件的创建者，谁创建了该文件，就自然成为文件的所有者。</p>
-<h3 id="5-2-1-查看文件的所有者"><a href="#5-2-1-查看文件的所有者" class="headerlink" title="5.2.1 查看文件的所有者"></a>5.2.1 查看文件的所有者</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -ahl</span><br></pre></td></tr></table></figure>
-<h3 id="5-2-2-修改文件的所有者"><a href="#5-2-2-修改文件的所有者" class="headerlink" title="5.2.2 修改文件的所有者"></a>5.2.2 修改文件的所有者</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown 用户名 文件名</span><br></pre></td></tr></table></figure>
-<h2 id="5-3-组的创建"><a href="#5-3-组的创建" class="headerlink" title="5.3 组的创建"></a>5.3 组的创建</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd [组名]</span><br></pre></td></tr></table></figure>
-<h2 id="5-4-文件-目录-所在组"><a href="#5-4-文件-目录-所在组" class="headerlink" title="5.4 文件/目录 所在组"></a>5.4 文件/目录 所在组</h2><p>当某个用户创建了文件后，该文件所在的组就是该用户所在的组。</p>
-<h3 id="5-4-1-查看文件的所在组"><a href="#5-4-1-查看文件的所在组" class="headerlink" title="5.4.1 查看文件的所在组"></a>5.4.1 查看文件的所在组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -ahl</span><br></pre></td></tr></table></figure>
-<h3 id="5-4-2-修改文件的所在组"><a href="#5-4-2-修改文件的所在组" class="headerlink" title="5.4.2 修改文件的所在组"></a>5.4.2 修改文件的所在组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chgrp 用户名 文件名</span><br></pre></td></tr></table></figure>
-<h3 id="5-5-改变用户所在的组"><a href="#5-5-改变用户所在的组" class="headerlink" title="5.5 改变用户所在的组"></a>5.5 改变用户所在的组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useermod -g [新组名] [用户名]</span><br><span class="line">usermod -d [目录名] [用户名] 改变该用户登录的初始目录，用户需要有进入到新目录的权限</span><br></pre></td></tr></table></figure>
-<h2 id="5-6-权限的基本介绍"><a href="#5-6-权限的基本介绍" class="headerlink" title="5.6 权限的基本介绍"></a>5.6 权限的基本介绍</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-rwxrwxrwx</span><br></pre></td></tr></table></figure>
+<h1><span id="wu-zu-guan-li-he-quan-xian-guan-li">五、 组管理和权限管理</span><a href="#wu-zu-guan-li-he-quan-xian-guan-li" class="header-anchor">#</a></h1><h2><span id="5-1-linux-zu-ji-ben-jie-shao">5.1 Linux组基本介绍</span><a href="#5-1-linux-zu-ji-ben-jie-shao" class="header-anchor">#</a></h2><p>在Linux中的每个用户必须属于一个组，不能独立于组外。在Linux中每个文件有所有者、所在组、其它组的概念</p>
+<h2><span id="5-2-wen-jian-mu-lu-suo-you-zhe">5.2文件/目录 所有者</span><a href="#5-2-wen-jian-mu-lu-suo-you-zhe" class="header-anchor">#</a></h2><p>一般为文件的创建者，谁创建了该文件，就自然成为文件的所有者。</p>
+<h3><span id="5-2-1-cha-kan-wen-jian-de-suo-you-zhe">5.2.1 查看文件的所有者</span><a href="#5-2-1-cha-kan-wen-jian-de-suo-you-zhe" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -ahl</span><br></pre></td></tr></table></figure>
+<h3><span id="5-2-2-xiu-gai-wen-jian-de-suo-you-zhe">5.2.2 修改文件的所有者</span><a href="#5-2-2-xiu-gai-wen-jian-de-suo-you-zhe" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown 用户名 文件名</span><br></pre></td></tr></table></figure>
+<h2><span id="5-3-zu-de-chuang-jian">5.3 组的创建</span><a href="#5-3-zu-de-chuang-jian" class="header-anchor">#</a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd [组名]</span><br></pre></td></tr></table></figure>
+<h2><span id="5-4-wen-jian-mu-lu-suo-zai-zu">5.4 文件/目录 所在组</span><a href="#5-4-wen-jian-mu-lu-suo-zai-zu" class="header-anchor">#</a></h2><p>当某个用户创建了文件后，该文件所在的组就是该用户所在的组。</p>
+<h3><span id="5-4-1-cha-kan-wen-jian-de-suo-zai-zu">5.4.1 查看文件的所在组</span><a href="#5-4-1-cha-kan-wen-jian-de-suo-zai-zu" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -ahl</span><br></pre></td></tr></table></figure>
+<h3><span id="5-4-2-xiu-gai-wen-jian-de-suo-zai-zu">5.4.2 修改文件的所在组</span><a href="#5-4-2-xiu-gai-wen-jian-de-suo-zai-zu" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chgrp 用户名 文件名</span><br></pre></td></tr></table></figure>
+<h3><span id="5-5-gai-bian-yong-hu-suo-zai-de-zu">5.5 改变用户所在的组</span><a href="#5-5-gai-bian-yong-hu-suo-zai-de-zu" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useermod -g [新组名] [用户名]</span><br><span class="line">usermod -d [目录名] [用户名] 改变该用户登录的初始目录，用户需要有进入到新目录的权限</span><br></pre></td></tr></table></figure>
+<h2><span id="5-6-quan-xian-de-ji-ben-jie-shao">5.6 权限的基本介绍</span><a href="#5-6-quan-xian-de-ji-ben-jie-shao" class="header-anchor">#</a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-rwxrwxrwx</span><br></pre></td></tr></table></figure>
 <p>0-9位介绍：<br>第0位确定文件类型：(d,-,l,c,b)<br><strong>l是链接，相当于Windows的快捷方式</strong><br><strong>d是目录,相当于Windows的文件夹</strong><br><strong>c是字符设备文件，鼠标，键盘</strong><br><strong>b是块设备，比如硬盘</strong><br>第1-3位确定<strong>所有者</strong>(该文件的所有者)拥有该文件的权限， –User<br>第4-6位确定<strong>所属组</strong>(同用户组)拥有该文件的权限，  –Group<br>第7-9位确定<strong>其他用户</strong>拥有该文件的权限 –Other</p>
-<h2 id="5-7-rwx权限详解"><a href="#5-7-rwx权限详解" class="headerlink" title="5.7 rwx权限详解"></a>5.7 rwx权限详解</h2><h3 id="5-7-1-rwx作用到文件"><a href="#5-7-1-rwx作用到文件" class="headerlink" title="5.7.1 rwx作用到文件"></a>5.7.1 rwx作用到文件</h3><p>1.<strong>r</strong> 代表可读(read):可以读取，查看。<br>2.<strong>w</strong> 代表可写(write):可以修改，但是不代表可以删除该文件，删除一个文档的前提条件是对该文件所在的目录有写权限，才能删除该文件<br>3.<strong>x</strong> 代表可执行(execute):可以被执行</p>
-<h3 id="5-7-2-rwx作用到目录"><a href="#5-7-2-rwx作用到目录" class="headerlink" title="5.7.2 rwx作用到目录"></a>5.7.2 rwx作用到目录</h3><p>1.<strong>r</strong> 代表可读(read):可以读取，<code>ls </code>查看目录内容。<br>2.<strong>w</strong> 代表可写(write):可以修改，对目录内创建+删除+重命名目录<br>3.<strong>x</strong> 代表可执行(execute):可以进入该目录</p>
-<h2 id="5-8-修改权限-chmod指令"><a href="#5-8-修改权限-chmod指令" class="headerlink" title="5.8 修改权限 - chmod指令"></a>5.8 修改权限 - chmod指令</h2><p>通过<code>chmod</code>指令，可以修改<strong>文件或目录</strong>的权限  </p>
+<h2><span id="5-7-rwx-quan-xian-xiang-jie">5.7 rwx权限详解</span><a href="#5-7-rwx-quan-xian-xiang-jie" class="header-anchor">#</a></h2><h3><span id="5-7-1-rwx-zuo-yong-dao-wen-jian">5.7.1 rwx作用到文件</span><a href="#5-7-1-rwx-zuo-yong-dao-wen-jian" class="header-anchor">#</a></h3><p>1.<strong>r</strong> 代表可读(read):可以读取，查看。<br>2.<strong>w</strong> 代表可写(write):可以修改，但是不代表可以删除该文件，删除一个文档的前提条件是对该文件所在的目录有写权限，才能删除该文件<br>3.<strong>x</strong> 代表可执行(execute):可以被执行</p>
+<h3><span id="5-7-2-rwx-zuo-yong-dao-mu-lu">5.7.2 rwx作用到目录</span><a href="#5-7-2-rwx-zuo-yong-dao-mu-lu" class="header-anchor">#</a></h3><p>1.<strong>r</strong> 代表可读(read):可以读取，<code>ls </code>查看目录内容。<br>2.<strong>w</strong> 代表可写(write):可以修改，对目录内创建+删除+重命名目录<br>3.<strong>x</strong> 代表可执行(execute):可以进入该目录</p>
+<h2><span id="5-8-xiu-gai-quan-xian-chmod-zhi-ling">5.8 修改权限 - chmod指令</span><a href="#5-8-xiu-gai-quan-xian-chmod-zhi-ling" class="header-anchor">#</a></h2><p>通过<code>chmod</code>指令，可以修改<strong>文件或目录</strong>的权限  </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [权限] [文件或目录]</span><br></pre></td></tr></table></figure>
-<h3 id="5-8-1-第一种方式：-、-、-变更权限"><a href="#5-8-1-第一种方式：-、-、-变更权限" class="headerlink" title="5.8.1 第一种方式：+、-、=变更权限"></a>5.8.1 第一种方式：+、-、=变更权限</h3><p>u:所有者 g：所有组 o：其他人 a:所有人(u、g、o的总和)<br>For example:u+x,g-r,u=rwx</p>
-<h3 id="5-8-2-第二种方式：通过数字变更权限"><a href="#5-8-2-第二种方式：通过数字变更权限" class="headerlink" title="5.8.2 第二种方式：通过数字变更权限"></a>5.8.2 第二种方式：通过数字变更权限</h3><p>r=4,w=2,x=1<br>For example:777</p>
-<h1 id="六、定时任务调度"><a href="#六、定时任务调度" class="headerlink" title="六、定时任务调度"></a>六、定时任务调度</h1><h2 id="6-1-crond-任务调度"><a href="#6-1-crond-任务调度" class="headerlink" title="6.1 crond 任务调度"></a>6.1 crond 任务调度</h2><h3 id="6-1-1-基本概念"><a href="#6-1-1-基本概念" class="headerlink" title="6.1.1 基本概念"></a>6.1.1 基本概念</h3><p>任务调度：是指系统在某个时间执行的特定命令或程序</p>
-<h3 id="6-1-2-基本指令"><a href="#6-1-2-基本指令" class="headerlink" title="6.1.2 基本指令"></a>6.1.2 基本指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab [选项]</span><br></pre></td></tr></table></figure>
-<h3 id="6-1-3-常用选项"><a href="#6-1-3-常用选项" class="headerlink" title="6.1.3 常用选项"></a>6.1.3 常用选项</h3><table>
+<h3><span id="5-8-1-di-yi-chong-fang-shi-bian-geng-quan-xian">5.8.1 第一种方式：+、-、=变更权限</span><a href="#5-8-1-di-yi-chong-fang-shi-bian-geng-quan-xian" class="header-anchor">#</a></h3><p>u:所有者 g：所有组 o：其他人 a:所有人(u、g、o的总和)<br>For example:u+x,g-r,u=rwx</p>
+<h3><span id="5-8-2-di-er-chong-fang-shi-tong-guo-shu-zi-bian-geng-quan-xian">5.8.2 第二种方式：通过数字变更权限</span><a href="#5-8-2-di-er-chong-fang-shi-tong-guo-shu-zi-bian-geng-quan-xian" class="header-anchor">#</a></h3><p>r=4,w=2,x=1<br>For example:777</p>
+<h1><span id="liu-ding-shi-ren-wu-diao-du">六、定时任务调度</span><a href="#liu-ding-shi-ren-wu-diao-du" class="header-anchor">#</a></h1><h2><span id="6-1-crond-ren-wu-diao-du">6.1 crond 任务调度</span><a href="#6-1-crond-ren-wu-diao-du" class="header-anchor">#</a></h2><h3><span id="6-1-1-ji-ben-gai-nian">6.1.1 基本概念</span><a href="#6-1-1-ji-ben-gai-nian" class="header-anchor">#</a></h3><p>任务调度：是指系统在某个时间执行的特定命令或程序</p>
+<h3><span id="6-1-2-ji-ben-zhi-ling">6.1.2 基本指令</span><a href="#6-1-2-ji-ben-zhi-ling" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab [选项]</span><br></pre></td></tr></table></figure>
+<h3><span id="6-1-3-chang-yong-xuan-xiang">6.1.3 常用选项</span><a href="#6-1-3-chang-yong-xuan-xiang" class="header-anchor">#</a></h3><table>
 <thead>
 <tr>
 <th align="left">选项</th>
@@ -431,7 +602,7 @@
 <td align="left">删除当前用户的所有crontab任务</td>
 </tr>
 </tbody></table>
-<h3 id="6-1-4-快速入门"><a href="#6-1-4-快速入门" class="headerlink" title="6.1.4 快速入门"></a>6.1.4 快速入门</h3><p>设置任务调度文件: <code>/etc/crontab</code><br>设置个人任务调度。执行<code>crontab -e</code>命令。<br>接着输入任务到调度文件<br>For example:<code>*/1 * * * * ls-l /etc/ &gt; /tmp/to.txt </code>代表每小时每分钟执行ls -l /etc/ &gt; /tmp/to.txt 指令<br><strong>参数细节说明：</strong></p>
+<h3><span id="6-1-4-kuai-su-ru-men">6.1.4 快速入门</span><a href="#6-1-4-kuai-su-ru-men" class="header-anchor">#</a></h3><p>设置任务调度文件: <code>/etc/crontab</code><br>设置个人任务调度。执行<code>crontab -e</code>命令。<br>接着输入任务到调度文件<br>For example:<code>*/1 * * * * ls-l /etc/ &gt; /tmp/to.txt </code>代表每小时每分钟执行ls -l /etc/ &gt; /tmp/to.txt 指令<br><strong>参数细节说明：</strong></p>
 <table>
 <thead>
 <tr>
@@ -467,9 +638,9 @@
 </tr>
 </tbody></table>
 <p><strong>特殊符号的说明：</strong><br>|特殊符号|含义|<br>|:–|:–|<br>|* |代表任何时间，比如第一个”<em>“就代表一小时中每分钟都执行一次|<br>|,|代表不连续的时间，比如”0 8,12,16 * * <em>命令”,就代表在每天的8点0分，12点0分，16点0分都执行一次命令|<br>|-|表示连续的时间范围。比如”0 5 * * 1-6命令”，代表周一到周六的凌晨5:00执行命令 |<br>|</em>/n|代表每隔多久执行一次，比如”</em>/10 * * * *命令”，代表每隔10分钟执行一次命令|</p>
-<h2 id="6-2-at"><a href="#6-2-at" class="headerlink" title="6.2 at"></a>6.2 at</h2><h3 id="6-2-1-基本介绍"><a href="#6-2-1-基本介绍" class="headerlink" title="6.2.1 基本介绍"></a>6.2.1 基本介绍</h3><p>1.at命令是一次性定时计划任务，at的守护进程atd会以后台模式运行，检查作业队列来运行<br>2.默认情况下，atd守护进程每60秒检查作业队列，有作业时，会检查作业运行时间，如果时间和当前时间匹配，则运行此作业<br>3.at命令是一次性定时计划任务，执行完一个任务后不再执行此任务<br>4.在使用at命令的时候，一定要保证atd进程的启动，指令<code>ps -ef | grep atd</code><br>可以检测atd是否在运行。</p>
-<h3 id="6-2-2-命令格式"><a href="#6-2-2-命令格式" class="headerlink" title="6.2.2 命令格式"></a>6.2.2 命令格式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">at [选项] [时间]</span><br><span class="line">Ctrl+D 结束at指令的输入，输出两次</span><br></pre></td></tr></table></figure>
-<h3 id="6-2-3-命令选项"><a href="#6-2-3-命令选项" class="headerlink" title="6.2.3 命令选项"></a>6.2.3 命令选项</h3><table>
+<h2><span id="6-2-at">6.2 at</span><a href="#6-2-at" class="header-anchor">#</a></h2><h3><span id="6-2-1-ji-ben-jie-shao">6.2.1 基本介绍</span><a href="#6-2-1-ji-ben-jie-shao" class="header-anchor">#</a></h3><p>1.at命令是一次性定时计划任务，at的守护进程atd会以后台模式运行，检查作业队列来运行<br>2.默认情况下，atd守护进程每60秒检查作业队列，有作业时，会检查作业运行时间，如果时间和当前时间匹配，则运行此作业<br>3.at命令是一次性定时计划任务，执行完一个任务后不再执行此任务<br>4.在使用at命令的时候，一定要保证atd进程的启动，指令<code>ps -ef | grep atd</code><br>可以检测atd是否在运行。</p>
+<h3><span id="6-2-2-ming-ling-ge-shi">6.2.2 命令格式</span><a href="#6-2-2-ming-ling-ge-shi" class="header-anchor">#</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">at [选项] [时间]</span><br><span class="line">Ctrl+D 结束at指令的输入，输出两次</span><br></pre></td></tr></table></figure>
+<h3><span id="6-2-3-ming-ling-xuan-xiang">6.2.3 命令选项</span><a href="#6-2-3-ming-ling-xuan-xiang" class="header-anchor">#</a></h3><table>
 <thead>
 <tr>
 <th align="left">选项</th>
@@ -509,8 +680,8 @@
 <td align="left">以时间参数的形式提交要运行的任务</td>
 </tr>
 </tbody></table>
-<h3 id="6-2-4-at时间定义"><a href="#6-2-4-at时间定义" class="headerlink" title="6.2.4 at时间定义"></a>6.2.4 at时间定义</h3><p>1.接受在当天的<strong>hh:mm</strong>(小时:分钟)式的时间指定。假如该时间已过去，那么就放在第二天执行。例如：04:00<br>2.使用midnight（深夜），noon(中午),teatime(饮茶时间)等比较模糊的词语来指定时间<br>3. 采用12小时计时制，即在时间上加上AM(上午)或PM(下午)例如：12pm<br>4. 执行命令的具体日期指定格式为month day(月，日)或mm/dd/yy(月/日/年)或dd.mm.yy(日.月.年)指定日期必须跟在指定时间的后面例如：04:00 2021-03-11<br>5. 使用相对计时法。指定格式为：now+count time-units,now就是当前时间，time-units是时间单位，可以是minutes,hours,days,weeks。count是时间的数量，几天，几小时。例如:now + 5 minutes<br>6. 直接使用today、tomorrow来指定完成命令的时间</p>
-<h1 id="七、Linux磁盘分区，挂载"><a href="#七、Linux磁盘分区，挂载" class="headerlink" title="七、Linux磁盘分区，挂载"></a>七、Linux磁盘分区，挂载</h1>
+<h3><span id="6-2-4-at-shi-jian-ding-yi">6.2.4 at时间定义</span><a href="#6-2-4-at-shi-jian-ding-yi" class="header-anchor">#</a></h3><p>1.接受在当天的<strong>hh:mm</strong>(小时:分钟)式的时间指定。假如该时间已过去，那么就放在第二天执行。例如：04:00<br>2.使用midnight（深夜），noon(中午),teatime(饮茶时间)等比较模糊的词语来指定时间<br>3. 采用12小时计时制，即在时间上加上AM(上午)或PM(下午)例如：12pm<br>4. 执行命令的具体日期指定格式为month day(月，日)或mm/dd/yy(月/日/年)或dd.mm.yy(日.月.年)指定日期必须跟在指定时间的后面例如：04:00 2021-03-11<br>5. 使用相对计时法。指定格式为：now+count time-units,now就是当前时间，time-units是时间单位，可以是minutes,hours,days,weeks。count是时间的数量，几天，几小时。例如:now + 5 minutes<br>6. 直接使用today、tomorrow来指定完成命令的时间</p>
+<h1><span id="qi-linux-ci-pan-fen-qu-gua-zai">七、Linux磁盘分区，挂载</span><a href="#qi-linux-ci-pan-fen-qu-gua-zai" class="header-anchor">#</a></h1>
       
 
       
@@ -667,6 +838,7 @@
   
 
   
+
 
 
           </div>
@@ -924,5 +1096,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":200,"height":400,"hOffset":20,"vOffset":20},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
