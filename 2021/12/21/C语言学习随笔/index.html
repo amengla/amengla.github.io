@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="文章记录C语言学习过程中的难点与需要记忆的地方 C primer Plus第1章使用C语言的步骤定义程序的目标-设计程序-编写代码-编译-运行程序-测试和调试程序-维护和修改代码我认为每个步骤都很重要，在使用过程中很多人跳过或者忽视的前面两步，这是我们应该注意的问题，编写程序之前每一步都想清楚，是写好一个程序的前提。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言学习随笔">
+<meta property="og:url" content="http://example.com/2021/12/21/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E9%9A%8F%E7%AC%94/index.html">
+<meta property="og:site_name" content="amengla的博客">
+<meta property="og:description" content="文章记录C语言学习过程中的难点与需要记忆的地方 C primer Plus第1章使用C语言的步骤定义程序的目标-设计程序-编写代码-编译-运行程序-测试和调试程序-维护和修改代码我认为每个步骤都很重要，在使用过程中很多人跳过或者忽视的前面两步，这是我们应该注意的问题，编写程序之前每一步都想清楚，是写好一个程序的前提。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-21T02:28:21.000Z">
+<meta property="article:modified_time" content="2021-12-27T08:59:15.169Z">
+<meta property="article:author" content="amengla">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/12/21/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E9%9A%8F%E7%AC%94/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>C语言学习随笔 | amengla的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">amengla的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">高山仰止，景行行止</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/21/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E9%9A%8F%E7%AC%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="amengla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="amengla的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C语言学习随笔
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-21 10:28:21" itemprop="dateCreated datePublished" datetime="2021-12-21T10:28:21+08:00">2021-12-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-27 16:59:15" itemprop="dateModified" datetime="2021-12-27T16:59:15+08:00">2021-12-27</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>文章记录C语言学习过程中的难点与需要记忆的地方</strong></p>
+<h1><span id="c-primer-plus">C primer Plus</span></h1><h2><span id="第1章">第1章</span></h2><p>使用C语言的步骤<br><strong>定义程序的目标-设计程序-编写代码-编译-运行程序-测试和调试程序-维护和修改代码</strong><br>我认为每个步骤都很重要，在使用过程中很多人跳过或者忽视的前面两步，这是我们应该注意的问题，编写程序之前每一步都想清楚，是写好一个程序的前提。  </p>
+<span id="more"></span>
+<h2><span id="第2章">第2章</span></h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> 为预处理指令,#表明C预处理器在编译器接手之前处理这条指令</span></span><br></pre></td></tr></table></figure>
+<p>头文件<code>&lt;stdio.h&gt;</code>的含义为<strong>标准输入/输出头文件</strong>，该文件中包含了供编译器使用的输入和输出函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*   */</span> 注释内容为符号之间的内容  <span class="comment">//为单行注释</span></span><br></pre></td></tr></table></figure>
+<h3><span id="命名">命名</span></h3><p>如果变量名无法清除的表达自身的用途，可在注释中进一步说明。这是一种良好的编程习惯和编程技巧。<br>可以用小写字母、大写字母、数字和下划线（_）来命名。而且，名称的第1个字符必须是字符或下划线，不能是数字<br>名称区分大小写</p>
+<h3><span id="提高程序可读性的技巧">提高程序可读性的技巧</span></h3><p>1、选择有意义的函数名<br>2、写注释<br>3、在函数中使用空行分隔概念上的多个部分<br>4、每条语句各占一行<br><strong>调试（debug）</strong></p>
+<h3><span id="错误">错误</span></h3><p>语法错误与语义错误，语法错误可以通过编译器检查出来；而语义错误编译器无法检查 </p>
+<h3><span id="关键字">关键字</span></h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>auto</td>
+<td>extern</td>
+<td>short</td>
+<td>while</td>
+</tr>
+<tr>
+<td>break</td>
+<td>float</td>
+<td>signed</td>
+<td>_Alignas</td>
+</tr>
+<tr>
+<td>case</td>
+<td>for</td>
+<td>sizeof</td>
+<td>_Alignof</td>
+</tr>
+<tr>
+<td>char</td>
+<td>goto</td>
+<td>static</td>
+<td>_Atomic</td>
+</tr>
+<tr>
+<td>const</td>
+<td>if</td>
+<td>struct</td>
+<td>_Bool</td>
+</tr>
+<tr>
+<td>continue</td>
+<td>inline</td>
+<td>switch</td>
+<td>_Complex</td>
+</tr>
+<tr>
+<td>default</td>
+<td>int</td>
+<td>typedef</td>
+<td>_Generic</td>
+</tr>
+<tr>
+<td>do</td>
+<td>long</td>
+<td>union</td>
+<td>_Imaginary</td>
+</tr>
+<tr>
+<td>double</td>
+<td>register</td>
+<td>unsigned</td>
+<td>_Noreturn</td>
+</tr>
+<tr>
+<td>else</td>
+<td>restrict</td>
+<td>void</td>
+<td>_Static_assert</td>
+</tr>
+<tr>
+<td>enum</td>
+<td>return</td>
+<td>volatile</td>
+<td>_Thread_local</td>
+</tr>
+</tbody></table>
+<h2><span id="第3章">第3章</span></h2><h3><span id="数据类型关键字">数据类型关键字</span></h3><table>
+<thead>
+<tr>
+<th>最初K&amp;R给出的关键字</th>
+<th>C90标准添加的关键字</th>
+<th>C99标准添加的关键字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int</td>
+<td>signed</td>
+<td>_Bool</td>
+</tr>
+<tr>
+<td>long</td>
+<td>void</td>
+<td>_Complex</td>
+</tr>
+<tr>
+<td>short</td>
+<td></td>
+<td>_Imaginary</td>
+</tr>
+<tr>
+<td>unsigned</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>char</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>float</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>double</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3><span id="printf函数中的转换说明-修饰符和标记">printf()函数中的转换说明、修饰符和标记</span></h3><table>
+<thead>
+<tr>
+<th>转换说明</th>
+<th>输出结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%d or %i</td>
+<td>有符号十进制数</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>单个字符</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>浮点数的十进制计数法</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>无符号的十进制数</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>无符号的八进制数</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>无符号的十六进制数</td>
+</tr>
+<tr>
+<td>%a</td>
+<td>浮点数、十六进制数字和p计数法（C99/C11）</td>
+</tr>
+<tr>
+<td>%A</td>
+<td>浮点数、十六进制数字和p计数法（C99/C11）</td>
+</tr>
+<tr>
+<td>%e</td>
+<td>浮点数、e计数法</td>
+</tr>
+<tr>
+<td>%E</td>
+<td>浮点数、E计数法</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>指针（就是指地址）</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>字符串</td>
+</tr>
+<tr>
+<td>%%</td>
+<td>打印百分号</td>
+</tr>
+<tr>
+<td>tips:有些说明符并不经常用到，写在这里是为了查询方便</td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>标记</td>
+<td>5种标记（+、-、空格、#、0）  <br>示例:%-10d</td>
+</tr>
+<tr>
+<td>数字</td>
+<td>最小字段宽度<br>如果该字段不能容纳待打印的数字或字符串，系统会使用更宽的字段</td>
+</tr>
+<tr>
+<td>.数字</td>
+<td>精度<br>对于%e、%E和%f转换，表示小数点右边数字的位数<br>对于%g和%G转换，表示有效数字的最大位数<br>对于%s转换，表示待打印字符的最大数量<br>对于整型转换，表示待打印数字的最小位数<br>如有必要，使用前导0来达到这个位数<br>只使用.表示其后跟随一个0,所以%.f和%.0f相同<br>示例：”%5.2f”打印一个浮点数，字段宽度为5字符，其中小数点后有两位数字</td>
+</tr>
+<tr>
+<td>h</td>
+<td>和整型转换说明一起使用，表示short int或unsigned short int类型的值<br>示例：”%hu”、”%hx”、”%6.4hd”</td>
+</tr>
+<tr>
+<td>hh</td>
+<td>和整型转换说明一起使用，表示signed char或unsigned char类型的值<br>示例：”%hhu”、”%hhx”、”%6.4hhd”</td>
+</tr>
+<tr>
+<td>j</td>
+<td>和整型转换说明一起使用,表示intmax_t或uintmax_t类型的值。这些类型定义在stdint.h中<br>示例：”%jd” “%8jx”</td>
+</tr>
+<tr>
+<td>l</td>
+<td>和整型转换说明一起使用，表示long int或unsigned long int类型的值<br>示例：”%ld” “%8lu”</td>
+</tr>
+<tr>
+<td>ll</td>
+<td>和整型转换说明一起使用，表示long long int或unsigned long long int类型的值(C99)<br>示例：”%lld” “%8llu”</td>
+</tr>
+<tr>
+<td>L</td>
+<td>和浮点转换说明一起使用,表示long double类型的值<br>示例：”%Lf” “%10.4Le”</td>
+</tr>
+<tr>
+<td>t</td>
+<td>和整型转换说明一起使用，表示ptrdiff_t类型的值。ptrdiff_t是两个指针差值的类型(C99)<br>示例：”%td” “%12ti”</td>
+</tr>
+<tr>
+<td>z</td>
+<td>和整型转换说明一起使用表示size_t类型的值。size_t是sizeof返回的类型(C99)<br>示例：”%zd” “%12zd”</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>标记</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-</td>
+<td>待打印项左对齐，即，从字段的左侧开始打印该项</td>
+</tr>
+<tr>
+<td>+</td>
+<td>有符号值若为正在其前面显示+，若为负，在其前面显示-</td>
+</tr>
+<tr>
+<td>空格</td>
+<td>有符号值若为正，则在值前面显示前导空格（不显示任何符号），若为负，则在值前面显示-</td>
+</tr>
+<tr>
+<td>#</td>
+<td>把结果转换为另一种形式。如果是%o格式，则以0开始；如狗是%x或%X格式，则以0x或0X开始；对于所有的浮点格式，#保证了即使后面没有任何数字，也打印一个小数点字符。对于%g和%G格式，#防止结果后面的0被删除<br>示例：”%#o” “%#8.0f” “%+#10.3e”</td>
+</tr>
+<tr>
+<td>0</td>
+<td>对于数值格式，用前导0代替空格填充字段宽度。对于整数格式，如果出现-标记或指定精度则忽略该标记<br>示例：”%010d” “%0.83f”</td>
+</tr>
+</tbody></table>
+<h2><span id="第4章">第4章</span></h2><p><code>scanf</code>读取字符串，在遇到第一个空白时停止</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>()    以字节为单位给出对象的大小</span><br><span class="line"><span class="built_in">strlen</span>()    给出字符串中的字符长度,需要头文件<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line">宏定义<span class="meta">#<span class="meta-keyword">define</span> NAME value</span></span><br><span class="line"><span class="keyword">const</span>    只读  </span><br></pre></td></tr></table></figure>
+<p><strong>limits.h中的一些明示常量</strong></p>
+<table>
+<thead>
+<tr>
+<th>明示常量</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CHAR_BIT</td>
+<td>char的位数</td>
+</tr>
+<tr>
+<td>CHAR_MAX</td>
+<td>char类型的最大值</td>
+</tr>
+<tr>
+<td>CHAR_MIN</td>
+<td>char类型的最小值</td>
+</tr>
+<tr>
+<td>SCHAR_MAX</td>
+<td>signed char类型的最大值</td>
+</tr>
+<tr>
+<td>SCHAR_MIN</td>
+<td>signed char类型的最小值</td>
+</tr>
+<tr>
+<td>UCHAR_MAX</td>
+<td>unsigned char类型的最大值</td>
+</tr>
+<tr>
+<td>SHRT_MAX</td>
+<td>short类型的最大值</td>
+</tr>
+<tr>
+<td>SHRT_MIN</td>
+<td>short类型的最小值</td>
+</tr>
+<tr>
+<td>USHRT_MAX</td>
+<td>unsinged short类型的最大值</td>
+</tr>
+<tr>
+<td>INT_MAX</td>
+<td>int类型的最大值</td>
+</tr>
+<tr>
+<td>INT_MIN</td>
+<td>int类型的最小值</td>
+</tr>
+<tr>
+<td>UINT_MAX</td>
+<td>unsigned int类型的最大值</td>
+</tr>
+<tr>
+<td>LONG_MAX</td>
+<td>long类型的最大值</td>
+</tr>
+<tr>
+<td>LONG_MIN</td>
+<td>long类型的最小值</td>
+</tr>
+<tr>
+<td>ULONG_MAX</td>
+<td>unsigned long类型的最大值</td>
+</tr>
+<tr>
+<td>LLONG_MAX</td>
+<td>long long类型的最大值</td>
+</tr>
+<tr>
+<td>LLONG_MIN</td>
+<td>long long类型的最小值</td>
+</tr>
+<tr>
+<td>ULLONG_MAX</td>
+<td>unsigned long long类型的最大值</td>
+</tr>
+</tbody></table>
+<p><strong>float.h中的一些明示常量</strong></p>
+<table>
+<thead>
+<tr>
+<th>明示常量</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FLT_MANT_DIG</td>
+<td>float类型的尾数位数</td>
+</tr>
+<tr>
+<td>FLT_DIG</td>
+<td>float类型的最少有效数字位数（十进制）</td>
+</tr>
+<tr>
+<td>FLT_MIN_10_EXP</td>
+<td>带全部有效数字的float类型的最小负指数（以10为底）</td>
+</tr>
+<tr>
+<td>FLT_MAX_10_EXP</td>
+<td>float类型的最大正指数(以10为底)</td>
+</tr>
+<tr>
+<td>FLT_MIN</td>
+<td>保留全部精度的float类型最小正数</td>
+</tr>
+<tr>
+<td>FLT_MAX</td>
+<td>float类型最大正数</td>
+</tr>
+<tr>
+<td>FLT_EPSILON</td>
+<td>1.00和比1.00大的最小float之间的差值</td>
+</tr>
+</tbody></table>
+<h1><span id="第5章">第5章</span></h1><p><strong>运算符优先级（从高到低）</strong></p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>结合律</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>()</td>
+<td>从左往右</td>
+</tr>
+<tr>
+<td>+ -（一元）</td>
+<td>从右往左</td>
+</tr>
+<tr>
+<td>* /</td>
+<td>从左往右</td>
+</tr>
+<tr>
+<td>+ -（二元）</td>
+<td>从左往右</td>
+</tr>
+<tr>
+<td>=</td>
+<td>从右往左</td>
+</tr>
+<tr>
+<td>注：结合律只适用于<strong>共享</strong>同一运算对象的运算符</td>
+<td></td>
+</tr>
+<tr>
+<td>例如：12 / 3 * 2中按照从左往右的结合律计算结果为8，若从右往左则为2</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>C语言规定，<code>sizeof</code>返回<code>size_t</code>类型的值。这是一个无符号整数类型，但它不是新类型。<code>size_t</code>是语言定义的标准类型<br>C语言的<code>typedef</code>机制，允许程序员为现有变量创建别名 例：<code>typedef double real</code>，意为把<code>real</code>定义为<code>double</code>类型的别名。<br>C99做了进一步调整，新增了<code>%zd</code>转换说明用于<code>printf()</code>显示<code>size_t</code>类型的值。如果系统不支持<code>%zd</code>,可以用<code>%u</code>或<code>%lu</code>代替<code>%zd</code></p>
+<h2><span id="类型转换">类型转换</span></h2><p>1.<strong>升级</strong>：较小类型转换为较大类型<br>2.涉及两种类型的运算，两个值会被分别转换成两种类型的更高级别<br>3.类型的级别从高到低依次为：<code>long double、double、float、unsigned long long、long long、unsigned long、long、unsigned int、int</code>，例外的情况是：当<code>long</code>和<code>int</code>的大小相同时，<code>unsigned int</code> 比 <code>long</code>的级别高。之所以<code>short</code>和<code>char</code>类型没有列出，是因为它们已经被升级到int和<code>unsigned int</code><br>4.在赋值表达式语句中，计算的最终结果会被转换成被赋值变量的类型。这个过程中可能导致类型<strong>升级</strong><em>或*<em>降级</em></em><br>5.当作为函数参数传递时，<code>char</code>和<code>short</code>被转换为<code>int</code>,<code>float</code>被转换为<code>double</code>.  </p>
+<p><strong>强制类型转换运算符</strong>：(类型名) 例如：(int)<br>求模运算符：<code>%</code></p>
+<h1><span id="第6章">第6章</span></h1><p><code>scanf()</code>函数读取成功返回1，不成功返回0；如果<code>scanf()</code>在转换值之前出了问题（例如，检测文件结尾或遇到硬件问题），会返回一个特殊值EOF（其值通常被定义为-1）<br><strong>空语句</strong>：用单独的分号表示<br>例如：  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;num) == <span class="number">1</span>)</span><br><span class="line">    ;  <span class="comment">//跳过整数输入</span></span><br></pre></td></tr></table></figure>
+<h2><span id="真">真</span></h2><p><strong>一般来说，所有的非零值都视为真；关系表达式为真，求值得1；关系表达式为假，求值得0</strong><br><strong>为了避免赋值（=）与判断（==）混淆，可以把常量放在左侧：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> = canoes  <span class="comment">//语法错误</span></span><br><span class="line"><span class="number">5</span> == canoed  <span class="comment">//正确</span></span><br></pre></td></tr></table></figure>
+<h2><span id="运算符优先级">运算符优先级</span></h2><p><strong>算术运算符&gt;关系运算符&gt;赋值运算符</strong></p>
+<table>
+<thead>
+<tr>
+<th>运算符（优先级从高到低）</th>
+<th>结合律</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>()</td>
+<td>从左往右</td>
+</tr>
+<tr>
+<td>- + ++ – sizeof</td>
+<td>从右往左</td>
+</tr>
+<tr>
+<td>* / %</td>
+<td>从左往右</td>
+</tr>
+<tr>
+<td>+ -</td>
+<td>从左往右</td>
+</tr>
+<tr>
+<td>&lt; &gt; &lt;= &gt;=</td>
+<td>从左往右</td>
+</tr>
+<tr>
+<td>== !=</td>
+<td>从左往右</td>
+</tr>
+<tr>
+<td>=</td>
+<td>从右往左</td>
+</tr>
+</tbody></table>
+<h2><span id="其他赋值运算符">其他赋值运算符</span></h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a += <span class="number">1</span> 与 a = a + <span class="number">1</span> 相同</span><br><span class="line">a -= <span class="number">1</span> 与 a = a - <span class="number">1</span> 相同</span><br><span class="line">a *= <span class="number">1</span> 与 a = a * <span class="number">1</span> 相同</span><br><span class="line">a /= <span class="number">1</span> 与 a = a / <span class="number">1</span> 相同</span><br><span class="line">a %= <span class="number">1</span> 与 a = a % <span class="number">1</span> 相同</span><br></pre></td></tr></table></figure>
+<h2><span id="逗号运算符">逗号运算符</span></h2><p>一、逗号运算符保证了被它分隔的表达式从左往右求值（换言之，逗号是一个序列点，所以逗号左侧的所有副作用都在程序执行逗号右侧项之前发生）<br>二、整个逗号表达式的值是右侧项的值，例如</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = (y=<span class="number">3</span>,(z = ++y + <span class="number">2</span>) + <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<h1><span id="第7章">第7章</span></h1><h2><span id="getchar和putchar">getchar()和putchar()</span></h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ch = getchar();   <span class="comment">//通常定义在stdio.h头文件中</span></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%c&quot;</span>,&amp;ch);  <span class="comment">//与上述语句作用相同</span></span><br><span class="line"><span class="built_in">putchar</span>(ch);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,ch);  <span class="comment">//与上述语句作用相同</span></span><br></pre></td></tr></table></figure>
+<p>字符是作为整数储存的</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/17/%E6%B5%8B%E8%AF%95/" rel="prev" title="测试">
+      <i class="fa fa-chevron-left"></i> 测试
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/21/%E6%88%91%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" rel="next" title="我的学习计划">
+      我的学习计划 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">C primer Plus</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">第1章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text">第2章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.1.</span> <span class="nav-text">命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.2.</span> <span class="nav-text">提高程序可读性的技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.3.</span> <span class="nav-text">错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.4.</span> <span class="nav-text">关键字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.3.</span> <span class="nav-text">第3章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.3.1.</span> <span class="nav-text">数据类型关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.3.2.</span> <span class="nav-text">printf()函数中的转换说明、修饰符和标记</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.4.</span> <span class="nav-text">第4章</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">第5章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.1.</span> <span class="nav-text">类型转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">第6章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.1.</span> <span class="nav-text">真</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.2.</span> <span class="nav-text">运算符优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.3.</span> <span class="nav-text">其他赋值运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.4.</span> <span class="nav-text">逗号运算符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">第7章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.1.</span> <span class="nav-text">getchar()和putchar()</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">amengla</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">amengla</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":200,"height":400,"hOffset":20,"vOffset":20},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
