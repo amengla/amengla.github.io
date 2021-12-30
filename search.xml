@@ -761,7 +761,7 @@
 <td>1.00和比1.00大的最小float之间的差值</td>
 </tr>
 </tbody></table>
-<h1><span id="第5章">第5章</span></h1><p><strong>运算符优先级（从高到低）</strong></p>
+<h2><span id="第5章">第5章</span></h2><p><strong>运算符优先级（从高到低）</strong></p>
 <table>
 <thead>
 <tr>
@@ -799,13 +799,13 @@
 </tr>
 </tbody></table>
 <p>C语言规定，<code>sizeof</code>返回<code>size_t</code>类型的值。这是一个无符号整数类型，但它不是新类型。<code>size_t</code>是语言定义的标准类型<br>C语言的<code>typedef</code>机制，允许程序员为现有变量创建别名 例：<code>typedef double real</code>，意为把<code>real</code>定义为<code>double</code>类型的别名。<br>C99做了进一步调整，新增了<code>%zd</code>转换说明用于<code>printf()</code>显示<code>size_t</code>类型的值。如果系统不支持<code>%zd</code>,可以用<code>%u</code>或<code>%lu</code>代替<code>%zd</code></p>
-<h2><span id="类型转换">类型转换</span></h2><p>1.<strong>升级</strong>：较小类型转换为较大类型<br>2.涉及两种类型的运算，两个值会被分别转换成两种类型的更高级别<br>3.类型的级别从高到低依次为：<code>long double、double、float、unsigned long long、long long、unsigned long、long、unsigned int、int</code>，例外的情况是：当<code>long</code>和<code>int</code>的大小相同时，<code>unsigned int</code> 比 <code>long</code>的级别高。之所以<code>short</code>和<code>char</code>类型没有列出，是因为它们已经被升级到int和<code>unsigned int</code><br>4.在赋值表达式语句中，计算的最终结果会被转换成被赋值变量的类型。这个过程中可能导致类型<strong>升级</strong><em>或*<em>降级</em></em><br>5.当作为函数参数传递时，<code>char</code>和<code>short</code>被转换为<code>int</code>,<code>float</code>被转换为<code>double</code>.  </p>
+<h3><span id="类型转换">类型转换</span></h3><p>1.<strong>升级</strong>：较小类型转换为较大类型<br>2.涉及两种类型的运算，两个值会被分别转换成两种类型的更高级别<br>3.类型的级别从高到低依次为：<code>long double、double、float、unsigned long long、long long、unsigned long、long、unsigned int、int</code>，例外的情况是：当<code>long</code>和<code>int</code>的大小相同时，<code>unsigned int</code> 比 <code>long</code>的级别高。之所以<code>short</code>和<code>char</code>类型没有列出，是因为它们已经被升级到int和<code>unsigned int</code><br>4.在赋值表达式语句中，计算的最终结果会被转换成被赋值变量的类型。这个过程中可能导致类型<strong>升级</strong><em>或*<em>降级</em></em><br>5.当作为函数参数传递时，<code>char</code>和<code>short</code>被转换为<code>int</code>,<code>float</code>被转换为<code>double</code>.  </p>
 <p><strong>强制类型转换运算符</strong>：(类型名) 例如：(int)<br>求模运算符：<code>%</code></p>
-<h1><span id="第6章">第6章</span></h1><p><code>scanf()</code>函数读取成功返回1，不成功返回0；如果<code>scanf()</code>在转换值之前出了问题（例如，检测文件结尾或遇到硬件问题），会返回一个特殊值EOF（其值通常被定义为-1）<br><strong>空语句</strong>：用单独的分号表示<br>例如：  </p>
+<h2><span id="第6章">第6章</span></h2><p><code>scanf()</code>函数读取成功返回正确读入字符的个数（大于0），不成功返回0；如果<code>scanf()</code>在转换值之前出了问题（例如，检测文件结尾或遇到硬件问题），会返回一个特殊值EOF（其值通常被定义为-1）<br><strong>空语句</strong>：用单独的分号表示<br>例如：  </p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;num) == <span class="number">1</span>)</span><br><span class="line">    ;  <span class="comment">//跳过整数输入</span></span><br></pre></td></tr></table></figure>
-<h2><span id="真">真</span></h2><p><strong>一般来说，所有的非零值都视为真；关系表达式为真，求值得1；关系表达式为假，求值得0</strong><br><strong>为了避免赋值（=）与判断（==）混淆，可以把常量放在左侧：</strong></p>
+<h3><span id="真">真</span></h3><p><strong>一般来说，所有的非零值都视为真；关系表达式为真，求值得1；关系表达式为假，求值得0</strong><br><strong>为了避免赋值（=）与判断（==）混淆，可以把常量放在左侧：</strong></p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span> = canoes  <span class="comment">//语法错误</span></span><br><span class="line"><span class="number">5</span> == canoed  <span class="comment">//正确</span></span><br></pre></td></tr></table></figure>
-<h2><span id="运算符优先级">运算符优先级</span></h2><p><strong>算术运算符&gt;关系运算符&gt;赋值运算符</strong></p>
+<h3><span id="运算符优先级">运算符优先级</span></h3><p><strong>算术运算符&gt;关系运算符&gt;赋值运算符</strong></p>
 <table>
 <thead>
 <tr>
@@ -842,12 +842,65 @@
 <td>从右往左</td>
 </tr>
 </tbody></table>
-<h2><span id="其他赋值运算符">其他赋值运算符</span></h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a += <span class="number">1</span> 与 a = a + <span class="number">1</span> 相同</span><br><span class="line">a -= <span class="number">1</span> 与 a = a - <span class="number">1</span> 相同</span><br><span class="line">a *= <span class="number">1</span> 与 a = a * <span class="number">1</span> 相同</span><br><span class="line">a /= <span class="number">1</span> 与 a = a / <span class="number">1</span> 相同</span><br><span class="line">a %= <span class="number">1</span> 与 a = a % <span class="number">1</span> 相同</span><br></pre></td></tr></table></figure>
-<h2><span id="逗号运算符">逗号运算符</span></h2><p>一、逗号运算符保证了被它分隔的表达式从左往右求值（换言之，逗号是一个序列点，所以逗号左侧的所有副作用都在程序执行逗号右侧项之前发生）<br>二、整个逗号表达式的值是右侧项的值，例如</p>
+<h3><span id="其他赋值运算符">其他赋值运算符</span></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a += <span class="number">1</span> 与 a = a + <span class="number">1</span> 相同</span><br><span class="line">a -= <span class="number">1</span> 与 a = a - <span class="number">1</span> 相同</span><br><span class="line">a *= <span class="number">1</span> 与 a = a * <span class="number">1</span> 相同</span><br><span class="line">a /= <span class="number">1</span> 与 a = a / <span class="number">1</span> 相同</span><br><span class="line">a %= <span class="number">1</span> 与 a = a % <span class="number">1</span> 相同</span><br></pre></td></tr></table></figure>
+<h3><span id="逗号运算符">逗号运算符</span></h3><p>一、逗号运算符保证了被它分隔的表达式从左往右求值（换言之，逗号是一个序列点，所以逗号左侧的所有副作用都在程序执行逗号右侧项之前发生）<br>二、整个逗号表达式的值是右侧项的值，例如</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">x = (y=<span class="number">3</span>,(z = ++y + <span class="number">2</span>) + <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
 
-<h1><span id="第7章">第7章</span></h1><h2><span id="getchar和putchar">getchar()和putchar()</span></h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">ch = getchar();   <span class="comment">//通常定义在stdio.h头文件中</span></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%c&quot;</span>,&amp;ch);  <span class="comment">//与上述语句作用相同</span></span><br><span class="line"><span class="built_in">putchar</span>(ch);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,ch);  <span class="comment">//与上述语句作用相同</span></span><br></pre></td></tr></table></figure>
-<p>字符是作为整数储存的</p>
+<h2><span id="第7章">第7章</span></h2><h3><span id="getchar和putchar">getchar()和putchar()</span></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">ch = getchar();   <span class="comment">//通常定义在stdio.h头文件中</span></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%c&quot;</span>,&amp;ch);  <span class="comment">//与上述语句作用相同</span></span><br><span class="line"><span class="built_in">putchar</span>(ch);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,ch);  <span class="comment">//与上述语句作用相同</span></span><br></pre></td></tr></table></figure>
+<p>字符是作为整数储存的<br><strong>表7.1 ctype.h头文件中的字符测试函数</strong></p>
+<p>函数名|如果是下列参数时，返回值为真|<br>|-|-|<br>|isalnum()|字母数字（字母或数字）|<br>|isalpha()|字母|<br>|isblank()|标准的空白字符（空格、水平制表符或换行符）或任何其他本地化指定为空白的字符|<br>|iscntrl()|控制字符，如Ctrl + B|<br>|isdigit()|数字|<br>|isgraph()|除空格之外的任意可打印字符|<br>|islower()|小写字母|<br>|isprint()|可打印字符|<br>|ispunct()|标点符号（除空格字母数字字符以外的任何可打印字符）|<br>|isspace()|空白字符（空格、换行符、换页符、回车符、垂直制表符、水平制表符或本地化定义的字符|<br>|isupper()|大写字母|<br>|isxdigit()|十六进制数字符|</p>
+<p><strong>表7.2 ctype.h头文件中的字符映射函数</strong></p>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tolower()</td>
+<td>如果参数是大写字符，该函数返回小写字符；否则，返回原始参数</td>
+</tr>
+<tr>
+<td>toupper()</td>
+<td>如果参数是小写字符，该函数返回大写字符；否则，返回原始参数</td>
+</tr>
+</tbody></table>
+<h3><span id="逻辑运算符">逻辑运算符</span></h3><table>
+<thead>
+<tr>
+<th>逻辑运算符（传统写法）</th>
+<th>逻辑运算符（iso646.h）</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;&amp;</td>
+<td>and</td>
+<td>与</td>
+</tr>
+<tr>
+<td>&#124;&#124;</td>
+<td>or</td>
+<td>或</td>
+</tr>
+<tr>
+<td>!</td>
+<td>not</td>
+<td>非</td>
+</tr>
+</tbody></table>
+<h4><span id="优先级">优先级</span></h4><p>！运算符的优先级与递增运算符的优先级相同<br>&amp;&amp;运算符 的优先级比 ||运算符 的优先级高</p>
+<h3><span id="条件运算符">条件运算符： ?:</span></h3><p>表达式的通用内容如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">expression1 ? expression2 :expression3</span><br></pre></td></tr></table></figure>
+<p>如果expression1为真（非 0），那么整个条件表达式的值与expression2的值相同；如果expression1的值为假（0），那么整个条件表达式的值与expression3的值相同。</p>
+<h3><span id="_bool类型">_Bool类型</span></h3><p>使用<code>stdbool.h</code>库</p>
+<h3><span id="continue与break">continue与break</span></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">continue</span>;</span><br></pre></td></tr></table></figure>
+<p>用于循环语句中，执行上述语句时，会跳过本次循环的剩余部分，并开始下一轮循环。如果<code>continue;</code>语句在嵌套循环内，则只会影响包含该语句的内层循环。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+<p>用于循环语句中，程序执行到break语句时，会终止包含它的循环，并继续执行下一阶段。</p>
+<h3><span id="switch语句">switch语句</span></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span>(number)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>: statement <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>: statement <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>: statement <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>: statement <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若有匹配的标签，则跳转到标签行，否则跳转到<code>default:</code>标签行。</p>
 ]]></content>
       <tags>
         <tag>C</tag>
