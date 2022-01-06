@@ -856,7 +856,62 @@
 
 <h2><span id="第7章">第7章</span></h2><h3><span id="getchar和putchar">getchar()和putchar()</span></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">ch = getchar();   <span class="comment">//通常定义在stdio.h头文件中</span></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%c&quot;</span>,&amp;ch);  <span class="comment">//与上述语句作用相同</span></span><br><span class="line"><span class="built_in">putchar</span>(ch);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,ch);  <span class="comment">//与上述语句作用相同</span></span><br></pre></td></tr></table></figure>
 <p>字符是作为整数储存的<br><strong>表7.1 ctype.h头文件中的字符测试函数</strong></p>
-<p>函数名|如果是下列参数时，返回值为真|<br>|-|-|<br>|isalnum()|字母数字（字母或数字）|<br>|isalpha()|字母|<br>|isblank()|标准的空白字符（空格、水平制表符或换行符）或任何其他本地化指定为空白的字符|<br>|iscntrl()|控制字符，如Ctrl + B|<br>|isdigit()|数字|<br>|isgraph()|除空格之外的任意可打印字符|<br>|islower()|小写字母|<br>|isprint()|可打印字符|<br>|ispunct()|标点符号（除空格字母数字字符以外的任何可打印字符）|<br>|isspace()|空白字符（空格、换行符、换页符、回车符、垂直制表符、水平制表符或本地化定义的字符|<br>|isupper()|大写字母|<br>|isxdigit()|十六进制数字符|</p>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>如果是下列参数时，返回值为真</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>isalnum()</td>
+<td>字母数字（字母或数字）</td>
+</tr>
+<tr>
+<td>isalpha()</td>
+<td>字母</td>
+</tr>
+<tr>
+<td>isblank()</td>
+<td>标准的空白字符（空格、水平制表符或换行符）或任何其他本地化指定为空白的字符</td>
+</tr>
+<tr>
+<td>iscntrl()</td>
+<td>控制字符，如Ctrl + B</td>
+</tr>
+<tr>
+<td>isdigit()</td>
+<td>数字</td>
+</tr>
+<tr>
+<td>isgraph()</td>
+<td>除空格之外的任意可打印字符</td>
+</tr>
+<tr>
+<td>islower()</td>
+<td>小写字母</td>
+</tr>
+<tr>
+<td>isprint()</td>
+<td>可打印字符</td>
+</tr>
+<tr>
+<td>ispunct()</td>
+<td>标点符号（除空格字母数字字符以外的任何可打印字符）</td>
+</tr>
+<tr>
+<td>isspace()</td>
+<td>空白字符（空格、换行符、换页符、回车符、垂直制表符、水平制表符或本地化定义的字符</td>
+</tr>
+<tr>
+<td>isupper()</td>
+<td>大写字母</td>
+</tr>
+<tr>
+<td>isxdigit()</td>
+<td>十六进制数字符</td>
+</tr>
+</tbody></table>
 <p><strong>表7.2 ctype.h头文件中的字符映射函数</strong></p>
 <table>
 <thead>
