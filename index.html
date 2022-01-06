@@ -186,6 +186,150 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/05/%E5%85%B3%E4%BA%8Ei++%E4%B8%8E++i%E7%9A%84%E6%80%9D%E8%80%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="amengla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="amengla的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/05/%E5%85%B3%E4%BA%8Ei++%E4%B8%8E++i%E7%9A%84%E6%80%9D%E8%80%83/" class="post-title-link" itemprop="url">关于i++与++i的思考</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-05 17:13:11" itemprop="dateCreated datePublished" datetime="2022-01-05T17:13:11+08:00">2022-01-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-06 10:03:00" itemprop="dateModified" datetime="2022-01-06T10:03:00+08:00">2022-01-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>如何理解i++与++i?</strong><br>首先，在理解++与–的情况下，的确可以使程序更简洁，但个人认为其并不适合与很多运算符一起使用，因为在没有注释的情况下，这让程序的可读性变得很差。<br>考虑下面一个程序</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span> </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> s1 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> s2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> p[<span class="number">10</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> *start = p;</span><br><span class="line">    s1 += *start++;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;s1 = %d\n&quot;</span>,s1);</span><br><span class="line">    s2 = *start;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;s2 = %d&quot;</span>,s2); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>s1,s2</code>的值是多少？<br>要解答这个问题，就要先搞清赋值与自增的先后问题</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    a = ++i;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a = %d&quot;</span>,a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的程序中输出为a = 1<br>而在</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    a = i++;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a = %d&quot;</span>,a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个程序中输出为<code>a = 0</code>，为什么？<br>在《C Primer Plus》中这样描述，单独使用递增运算符时（如,<code>i++;</code>），使用<code>i++;</code>或<code>++i;</code>都没有关系。但是当运算对象是更复杂表达式的一部分时，使用前缀和后缀的效果不同。但是这里并没有解释不同的原因。在这里我会结合网上其它人的答案，给出我自己的解释，但是仅供参考：<br>在前面我们看到使用<code>a = ++i;</code>时，先递增i再将结果赋值给a；而<code>a = i++;</code>时先赋值，再递增。这就产生了一个问题：自增运算符（<code>++</code>）的优先级要高于赋值运算符（<code>=</code>），为什么要先赋值呢？并不是C本身语法出了问题，因为确实是先自增，后赋值，问题是出在了<code>i++</code>的返回值是其自增之前的值，而<code>++i</code>返回自增之后的值。<br>这里只是给出一个思考，造成问题如此复杂的原因是C语言更底层的原因，而我们在实际操作中可以理解<code>a = i++;</code>为先赋值再自增。<br>理解了这个问题之后，就可以解决<br><code>s1 = *start++;</code>的问题了，<code>*</code>与<code>++</code>的优先级相同，结合律自右向左，先<code>++</code>后指向，但是<code>++</code>在后面所以返回的是自增之前的值，<code>s1</code>的值应该是数组第一个元素的值，也就是<strong>1</strong>。为了验证<code>start</code>是否自增，使用<code>s2</code>测试，结果输出<code>s2</code>为<strong>2</strong>,证明指针自增了，感兴趣的同学可以自己验证一下。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/31/%E4%B8%80%E4%B8%AA%E8%B7%B3%E8%BF%87%E7%A9%BA%E7%99%BD%E5%AD%97%E7%AC%A6%E7%9A%84%E7%A8%8B%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="amengla">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="amengla的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/31/%E4%B8%80%E4%B8%AA%E8%B7%B3%E8%BF%87%E7%A9%BA%E7%99%BD%E5%AD%97%E7%AC%A6%E7%9A%84%E7%A8%8B%E5%BA%8F/" class="post-title-link" itemprop="url">一个跳过空白字符的程序</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-31 15:46:40" itemprop="dateCreated datePublished" datetime="2021-12-31T15:46:40+08:00">2021-12-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-05 17:14:13" itemprop="dateModified" datetime="2022-01-05T17:14:13+08:00">2022-01-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span> </span></span><br><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">get_first</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch;</span><br><span class="line">	ch = get_first();  <span class="comment">//调用函数</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%c,%d&quot;</span>,ch,ch);  <span class="comment">//测试效果</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">get_first</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	</span><br><span class="line">    <span class="keyword">int</span> ch;</span><br><span class="line">    <span class="comment">/* 若读取的为空白字符，跳过它，并将空白字符之后的第一个字符赋值给ch */</span></span><br><span class="line">	<span class="keyword">for</span>(ch = getchar();<span class="built_in">isspace</span>(ch) != <span class="number">0</span>;)</span><br><span class="line">	  ch = getchar();</span><br><span class="line">	<span class="comment">/* 跳过ch之后的字符，碰到换行符结束循环 */</span></span><br><span class="line">    <span class="keyword">while</span> (getchar() != <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">return</span> ch;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/21/%E6%88%91%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -217,7 +361,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-27 16:59:14" itemprop="dateModified" datetime="2021-12-27T16:59:14+08:00">2021-12-27</time>
+                <time title="修改时间：2022-01-04 09:45:20" itemprop="dateModified" datetime="2022-01-04T09:45:20+08:00">2022-01-04</time>
               </span>
 
           
@@ -232,7 +376,7 @@
 
       
           <h1><span id="c-primer-plus">C Primer Plus</span></h1><h2><span id="前言">前言</span></h2><p><strong>1-9章一天至少1章，后面几章可以两天1章</strong><br><strong>学习完1章的标准为，做完课后练习题为准</strong></p>
-<h2><span id="学习进度">学习进度</span></h2><p>2021.12.21 第一章:完成,第二章：练习题没做完，懒得做了<br>2021.12.22 第三章：完成<br>2021.12.23 第四章：看了一部分<br>2021.12.24 第四章、第五章<br><strong>本次学习已看完的部分不会再重复看，只有在需要查阅资料的时候回看</strong><br>2021.12.27 第五章最后一部分，第六章完成，第七章一部分</p>
+<h2><span id="学习进度">学习进度</span></h2><p>2021.12.21 第一章:完成,第二章：练习题没做完，懒得做了<br>2021.12.22 第三章：完成<br>2021.12.23 第四章：看了一部分<br>2021.12.24 第四章、第五章<br><strong>本次学习已看完的部分不会再重复看，只有在需要查阅资料的时候回看</strong><br>2021.12.27 第五章最后一部分，第六章完成，第七章一部分<br>2021.12.30 第七章，第八章<br>2022.1.4</p>
 
       
     </div>
@@ -283,7 +427,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-30 11:25:47" itemprop="dateModified" datetime="2021-12-30T11:25:47+08:00">2021-12-30</time>
+                <time title="修改时间：2022-01-05 16:01:43" itemprop="dateModified" datetime="2022-01-05T16:01:43+08:00">2022-01-05</time>
               </span>
 
           
@@ -483,7 +627,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-17 17:06:14" itemprop="dateModified" datetime="2021-12-17T17:06:14+08:00">2021-12-17</time>
+                <time title="修改时间：2021-12-31 15:52:43" itemprop="dateModified" datetime="2021-12-31T15:52:43+08:00">2021-12-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -597,14 +741,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -637,7 +781,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

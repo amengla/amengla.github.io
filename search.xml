@@ -227,7 +227,7 @@
 <p>0-9位介绍：<br>第0位确定文件类型：(d,-,l,c,b)<br><strong>l是链接，相当于Windows的快捷方式</strong><br><strong>d是目录,相当于Windows的文件夹</strong><br><strong>c是字符设备文件，鼠标，键盘</strong><br><strong>b是块设备，比如硬盘</strong><br>第1-3位确定<strong>所有者</strong>(该文件的所有者)拥有该文件的权限， –User<br>第4-6位确定<strong>所属组</strong>(同用户组)拥有该文件的权限，  –Group<br>第7-9位确定<strong>其他用户</strong>拥有该文件的权限 –Other</p>
 <h2><span id="57-rwx权限详解">5.7 rwx权限详解</span></h2><h3><span id="571-rwx作用到文件">5.7.1 rwx作用到文件</span></h3><p>1.<strong>r</strong> 代表可读(read):可以读取，查看。<br>2.<strong>w</strong> 代表可写(write):可以修改，但是不代表可以删除该文件，删除一个文档的前提条件是对该文件所在的目录有写权限，才能删除该文件<br>3.<strong>x</strong> 代表可执行(execute):可以被执行</p>
 <h3><span id="572-rwx作用到目录">5.7.2 rwx作用到目录</span></h3><p>1.<strong>r</strong> 代表可读(read):可以读取，<code>ls </code>查看目录内容。<br>2.<strong>w</strong> 代表可写(write):可以修改，对目录内创建+删除+重命名目录<br>3.<strong>x</strong> 代表可执行(execute):可以进入该目录</p>
-<h2><span id="58-修改权限-chmod指令">5.8 修改权限 - chmod指令</span></h2><p>通过<code>chmod</code>指令，可以修改<strong>文件或目录</strong>的权限  </p>
+<h2><span id="58-修改权限-chmod指令">5.8 修改权限 - chmod指令.</span></h2><p>通过<code>chmod</code>指令，可以修改<strong>文件或目录</strong>的权限  </p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod [权限] [文件或目录]</span><br></pre></td></tr></table></figure>
 <h3><span id="581-第一种方式-变更权限">5.8.1 第一种方式：+、-、=变更权限</span></h3><p>u:所有者 g：所有组 o：其他人 a:所有人(u、g、o的总和)<br>For example:u+x,g-r,u=rwx</p>
 <h3><span id="582-第二种方式通过数字变更权限">5.8.2 第二种方式：通过数字变更权限</span></h3><p>r=4,w=2,x=1<br>For example:777</p>
@@ -543,6 +543,14 @@
 <tr>
 <td>%E</td>
 <td>浮点数、E计数法</td>
+</tr>
+<tr>
+<td>%g</td>
+<td>根据值的不同，自动选择%f或%e。%e格式用于指数小于-4或者大于或等于精度时</td>
+</tr>
+<tr>
+<td>%G</td>
+<td>根据值的不同，自动选择%f或%E。%E格式用于指数小于-4或者大于或等于精度时</td>
 </tr>
 <tr>
 <td>%p</td>
@@ -901,6 +909,20 @@
 <p>用于循环语句中，程序执行到break语句时，会终止包含它的循环，并继续执行下一阶段。</p>
 <h3><span id="switch语句">switch语句</span></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span>(number)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>: statement <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>: statement <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>: statement <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>: statement <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>若有匹配的标签，则跳转到标签行，否则跳转到<code>default:</code>标签行。</p>
+<h2><span id="第8章">第8章</span></h2><h3><span id="缓冲">缓冲</span></h3><p><strong>ANSI C</strong>把缓冲输入作为标准<br>缓冲分为两类：完全缓冲I/O和行缓冲I/O。完全缓冲输入指的是当缓冲区被填满时才刷新缓冲区（内容被发送至目的地），通常出现在文件输入中</p>
+<h3><span id="文件结尾">文件结尾</span></h3><p>在C语言中，用<code>getchar()</code>读取文件检测到文件结尾时会返回一个特殊的值，即<code>EOF(end of file</code>的缩写)。<code>scanf()</code>函数检测到文件结尾时也会返回<code>EOF</code><br><code>EOF</code>定义在<code>stdio.h</code>头文件中：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EOF (-1)</span></span><br></pre></td></tr></table></figure>
+<h3><span id="重定向">重定向</span></h3><p>绝大部分C系统都可以使用重定向，可以通过操作系统重定向所有程序，或只在C编译器允许的情况下重定向C程序。假设<code>prog</code>是可执行程序名，file1和file2是文件名。<br><strong>把输出重定向至文件: &gt;</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./prog &gt; file1</span><br></pre></td></tr></table></figure>
+<p><strong>把输入重定向至文件: &lt;</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./prog &lt; file2</span><br></pre></td></tr></table></figure>
+<p><strong>组合重定向：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./prog &lt;file2 &gt;file1</span><br><span class="line">./prog &gt;file1 &lt;file2</span><br><span class="line">这两种形式都是把file2作为输入、file1作为输出。</span><br></pre></td></tr></table></figure>
+<p>tips：<br>  一些系统要求重定向运算符左侧有一个空格，右侧没有空格。而其他系统（如，UNIX）允许在重定位运算符两侧有空格或没有空格</p>
+<h3><span id="输入流">输入流</span></h3><p>  输入由字符组成，但是<code>scanf()</code>可以把输入转换成整数值或浮点数值。使用转换说明（如<code>%d</code>或<code>%f</code>）限制了可接受输入的字符类型，而<code>getchar()</code>和使用<code>%c</code>的<code>scanf()</code>接受所有的字符。</p>
+<h2><span id="第9章">第9章</span></h2>  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%*d&quot;</span>)  <span class="comment">//*在scanf()函数中的作用为跳过</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="第10章">第10章</span></h2><p>  指针的值是它所指向对象的地址。地址的表示方式依赖于计算机内部的硬件。许多计算机（包括PC和Macintosh）都是<strong>按字节编址</strong>，意思是内存中的每个字节都按顺序编号。这里，一个较大对象的地址（如double类型的变量）通常是该对象第一个字节的地址。<br>  在指针前面使用*运算符可以得到该指针所指向对象的值。<br>  指针加1，指针的值递增它所指向类型的大小（以字节为单位）。</p>
 ]]></content>
       <tags>
         <tag>C</tag>
@@ -910,7 +932,33 @@
     <title>我的学习计划</title>
     <url>/2021/12/21/%E6%88%91%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/</url>
     <content><![CDATA[<h1><span id="c-primer-plus">C Primer Plus</span></h1><h2><span id="前言">前言</span></h2><p><strong>1-9章一天至少1章，后面几章可以两天1章</strong><br><strong>学习完1章的标准为，做完课后练习题为准</strong></p>
-<h2><span id="学习进度">学习进度</span></h2><p>2021.12.21 第一章:完成,第二章：练习题没做完，懒得做了<br>2021.12.22 第三章：完成<br>2021.12.23 第四章：看了一部分<br>2021.12.24 第四章、第五章<br><strong>本次学习已看完的部分不会再重复看，只有在需要查阅资料的时候回看</strong><br>2021.12.27 第五章最后一部分，第六章完成，第七章一部分</p>
+<h2><span id="学习进度">学习进度</span></h2><p>2021.12.21 第一章:完成,第二章：练习题没做完，懒得做了<br>2021.12.22 第三章：完成<br>2021.12.23 第四章：看了一部分<br>2021.12.24 第四章、第五章<br><strong>本次学习已看完的部分不会再重复看，只有在需要查阅资料的时候回看</strong><br>2021.12.27 第五章最后一部分，第六章完成，第七章一部分<br>2021.12.30 第七章，第八章<br>2022.1.4</p>
+]]></content>
+      <tags>
+        <tag>c</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一个跳过空白字符的程序</title>
+    <url>/2021/12/31/%E4%B8%80%E4%B8%AA%E8%B7%B3%E8%BF%87%E7%A9%BA%E7%99%BD%E5%AD%97%E7%AC%A6%E7%9A%84%E7%A8%8B%E5%BA%8F/</url>
+    <content><![CDATA[<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span> </span></span><br><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">get_first</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch;</span><br><span class="line">	ch = get_first();  <span class="comment">//调用函数</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%c,%d&quot;</span>,ch,ch);  <span class="comment">//测试效果</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">get_first</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	</span><br><span class="line">    <span class="keyword">int</span> ch;</span><br><span class="line">    <span class="comment">/* 若读取的为空白字符，跳过它，并将空白字符之后的第一个字符赋值给ch */</span></span><br><span class="line">	<span class="keyword">for</span>(ch = getchar();<span class="built_in">isspace</span>(ch) != <span class="number">0</span>;)</span><br><span class="line">	  ch = getchar();</span><br><span class="line">	<span class="comment">/* 跳过ch之后的字符，碰到换行符结束循环 */</span></span><br><span class="line">    <span class="keyword">while</span> (getchar() != <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">return</span> ch;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>C</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于i++与++i的思考</title>
+    <url>/2022/01/05/%E5%85%B3%E4%BA%8Ei++%E4%B8%8E++i%E7%9A%84%E6%80%9D%E8%80%83/</url>
+    <content><![CDATA[<p><strong>如何理解i++与++i?</strong><br>首先，在理解++与–的情况下，的确可以使程序更简洁，但个人认为其并不适合与很多运算符一起使用，因为在没有注释的情况下，这让程序的可读性变得很差。<br>考虑下面一个程序</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span> </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> s1 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> s2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> p[<span class="number">10</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> *start = p;</span><br><span class="line">    s1 += *start++;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;s1 = %d\n&quot;</span>,s1);</span><br><span class="line">    s2 = *start;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;s2 = %d&quot;</span>,s2); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>s1,s2</code>的值是多少？<br>要解答这个问题，就要先搞清赋值与自增的先后问题</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    a = ++i;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a = %d&quot;</span>,a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的程序中输出为a = 1<br>而在</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    a = i++;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a = %d&quot;</span>,a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个程序中输出为<code>a = 0</code>，为什么？<br>在《C Primer Plus》中这样描述，单独使用递增运算符时（如,<code>i++;</code>），使用<code>i++;</code>或<code>++i;</code>都没有关系。但是当运算对象是更复杂表达式的一部分时，使用前缀和后缀的效果不同。但是这里并没有解释不同的原因。在这里我会结合网上其它人的答案，给出我自己的解释，但是仅供参考：<br>在前面我们看到使用<code>a = ++i;</code>时，先递增i再将结果赋值给a；而<code>a = i++;</code>时先赋值，再递增。这就产生了一个问题：自增运算符（<code>++</code>）的优先级要高于赋值运算符（<code>=</code>），为什么要先赋值呢？并不是C本身语法出了问题，因为确实是先自增，后赋值，问题是出在了<code>i++</code>的返回值是其自增之前的值，而<code>++i</code>返回自增之后的值。<br>这里只是给出一个思考，造成问题如此复杂的原因是C语言更底层的原因，而我们在实际操作中可以理解<code>a = i++;</code>为先赋值再自增。<br>理解了这个问题之后，就可以解决<br><code>s1 = *start++;</code>的问题了，<code>*</code>与<code>++</code>的优先级相同，结合律自右向左，先<code>++</code>后指向，但是<code>++</code>在后面所以返回的是自增之前的值，<code>s1</code>的值应该是数组第一个元素的值，也就是<strong>1</strong>。为了验证<code>start</code>是否自增，使用<code>s2</code>测试，结果输出<code>s2</code>为<strong>2</strong>,证明指针自增了，感兴趣的同学可以自己验证一下。</p>
 ]]></content>
       <tags>
         <tag>c</tag>

@@ -28,7 +28,7 @@
 <meta property="og:description" content="文章记录C语言学习过程中的难点与需要记忆的地方 C primer Plus第1章使用C语言的步骤定义程序的目标-设计程序-编写代码-编译-运行程序-测试和调试程序-维护和修改代码我认为每个步骤都很重要，在使用过程中很多人跳过或者忽视的前面两步，这是我们应该注意的问题，编写程序之前每一步都想清楚，是写好一个程序的前提。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-21T02:28:21.000Z">
-<meta property="article:modified_time" content="2021-12-30T03:25:47.175Z">
+<meta property="article:modified_time" content="2022-01-05T08:01:43.556Z">
 <meta property="article:author" content="amengla">
 <meta property="article:tag" content="C">
 <meta name="twitter:card" content="summary">
@@ -221,7 +221,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-30 11:25:47" itemprop="dateModified" datetime="2021-12-30T11:25:47+08:00">2021-12-30</time>
+                <time title="修改时间：2022-01-05 16:01:43" itemprop="dateModified" datetime="2022-01-05T16:01:43+08:00">2022-01-05</time>
               </span>
 
           
@@ -410,6 +410,14 @@
 <tr>
 <td>%E</td>
 <td>浮点数、E计数法</td>
+</tr>
+<tr>
+<td>%g</td>
+<td>根据值的不同，自动选择%f或%e。%e格式用于指数小于-4或者大于或等于精度时</td>
+</tr>
+<tr>
+<td>%G</td>
+<td>根据值的不同，自动选择%f或%E。%E格式用于指数小于-4或者大于或等于精度时</td>
 </tr>
 <tr>
 <td>%p</td>
@@ -768,6 +776,20 @@
 <p>用于循环语句中，程序执行到break语句时，会终止包含它的循环，并继续执行下一阶段。</p>
 <h3><span id="switch语句">switch语句</span></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(number)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>: statement <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>: statement <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>: statement <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>: statement <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>若有匹配的标签，则跳转到标签行，否则跳转到<code>default:</code>标签行。</p>
+<h2><span id="第8章">第8章</span></h2><h3><span id="缓冲">缓冲</span></h3><p><strong>ANSI C</strong>把缓冲输入作为标准<br>缓冲分为两类：完全缓冲I/O和行缓冲I/O。完全缓冲输入指的是当缓冲区被填满时才刷新缓冲区（内容被发送至目的地），通常出现在文件输入中</p>
+<h3><span id="文件结尾">文件结尾</span></h3><p>在C语言中，用<code>getchar()</code>读取文件检测到文件结尾时会返回一个特殊的值，即<code>EOF(end of file</code>的缩写)。<code>scanf()</code>函数检测到文件结尾时也会返回<code>EOF</code><br><code>EOF</code>定义在<code>stdio.h</code>头文件中：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EOF (-1)</span></span><br></pre></td></tr></table></figure>
+<h3><span id="重定向">重定向</span></h3><p>绝大部分C系统都可以使用重定向，可以通过操作系统重定向所有程序，或只在C编译器允许的情况下重定向C程序。假设<code>prog</code>是可执行程序名，file1和file2是文件名。<br><strong>把输出重定向至文件: &gt;</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./prog &gt; file1</span><br></pre></td></tr></table></figure>
+<p><strong>把输入重定向至文件: &lt;</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./prog &lt; file2</span><br></pre></td></tr></table></figure>
+<p><strong>组合重定向：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./prog &lt;file2 &gt;file1</span><br><span class="line">./prog &gt;file1 &lt;file2</span><br><span class="line">这两种形式都是把file2作为输入、file1作为输出。</span><br></pre></td></tr></table></figure>
+<p>tips：<br>  一些系统要求重定向运算符左侧有一个空格，右侧没有空格。而其他系统（如，UNIX）允许在重定位运算符两侧有空格或没有空格</p>
+<h3><span id="输入流">输入流</span></h3><p>  输入由字符组成，但是<code>scanf()</code>可以把输入转换成整数值或浮点数值。使用转换说明（如<code>%d</code>或<code>%f</code>）限制了可接受输入的字符类型，而<code>getchar()</code>和使用<code>%c</code>的<code>scanf()</code>接受所有的字符。</p>
+<h2><span id="第9章">第9章</span></h2>  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%*d&quot;</span>)  <span class="comment">//*在scanf()函数中的作用为跳过</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="第10章">第10章</span></h2><p>  指针的值是它所指向对象的地址。地址的表示方式依赖于计算机内部的硬件。许多计算机（包括PC和Macintosh）都是<strong>按字节编址</strong>，意思是内存中的每个字节都按顺序编号。这里，一个较大对象的地址（如double类型的变量）通常是该对象第一个字节的地址。<br>  在指针前面使用*运算符可以得到该指针所指向对象的值。<br>  指针加1，指针的值递增它所指向类型的大小（以字节为单位）。</p>
 
     </div>
 
@@ -852,7 +874,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">C primer Plus</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">第1章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text">第2章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.1.</span> <span class="nav-text">命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.2.</span> <span class="nav-text">提高程序可读性的技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.3.</span> <span class="nav-text">错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.4.</span> <span class="nav-text">关键字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.3.</span> <span class="nav-text">第3章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.3.1.</span> <span class="nav-text">数据类型关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.3.2.</span> <span class="nav-text">printf()函数中的转换说明、修饰符和标记</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.4.</span> <span class="nav-text">第4章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.5.</span> <span class="nav-text">第5章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.5.1.</span> <span class="nav-text">类型转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.6.</span> <span class="nav-text">第6章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.6.1.</span> <span class="nav-text">真</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.6.2.</span> <span class="nav-text">运算符优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.6.3.</span> <span class="nav-text">其他赋值运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.6.4.</span> <span class="nav-text">逗号运算符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.7.</span> <span class="nav-text">第7章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.7.1.</span> <span class="nav-text">getchar()和putchar()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.7.2.</span> <span class="nav-text">逻辑运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.7.2.1.</span> <span class="nav-text">优先级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.7.3.</span> <span class="nav-text">条件运算符： ?:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.7.4.</span> <span class="nav-text">_Bool类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.7.5.</span> <span class="nav-text">continue与break</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.7.6.</span> <span class="nav-text">switch语句</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">C primer Plus</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">第1章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text">第2章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.1.</span> <span class="nav-text">命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.2.</span> <span class="nav-text">提高程序可读性的技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.3.</span> <span class="nav-text">错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.4.</span> <span class="nav-text">关键字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.3.</span> <span class="nav-text">第3章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.3.1.</span> <span class="nav-text">数据类型关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.3.2.</span> <span class="nav-text">printf()函数中的转换说明、修饰符和标记</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.4.</span> <span class="nav-text">第4章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.5.</span> <span class="nav-text">第5章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.5.1.</span> <span class="nav-text">类型转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.6.</span> <span class="nav-text">第6章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.6.1.</span> <span class="nav-text">真</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.6.2.</span> <span class="nav-text">运算符优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.6.3.</span> <span class="nav-text">其他赋值运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.6.4.</span> <span class="nav-text">逗号运算符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.7.</span> <span class="nav-text">第7章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.7.1.</span> <span class="nav-text">getchar()和putchar()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.7.2.</span> <span class="nav-text">逻辑运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.7.2.1.</span> <span class="nav-text">优先级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.7.3.</span> <span class="nav-text">条件运算符： ?:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.7.4.</span> <span class="nav-text">_Bool类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.7.5.</span> <span class="nav-text">continue与break</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.7.6.</span> <span class="nav-text">switch语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.8.</span> <span class="nav-text">第8章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.8.1.</span> <span class="nav-text">缓冲</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.8.2.</span> <span class="nav-text">文件结尾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.8.3.</span> <span class="nav-text">重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.8.4.</span> <span class="nav-text">输入流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.9.</span> <span class="nav-text">第9章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.10.</span> <span class="nav-text">第10章</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -866,14 +888,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -906,7 +928,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
